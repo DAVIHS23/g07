@@ -39,3 +39,14 @@ body, html {
     min-height: 400px;
   }
 }
+
+.tooltip {
+  position: absolute;
+  text-align: left;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  pointer-events: none;
+  font-size: 12px;
+}
