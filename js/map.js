@@ -43,14 +43,23 @@ function ready(error, topo, populationData, IQLevelData) {
 
     var countryData = populationData.find((country) => country.country === d.properties.name);
     var iqData = IQLevelData.find((iq) => iq.country === d.properties.name);
-    console.log(iqData.IQ)
-    console.log(countryData)
 
     if (iqData) {
       var tooltipContent = `
         <strong>${iqData.country}</strong><br>
         Rank: ${iqData.rank}<br>
         IQ: ${iqData.IQ}<br>
+      `;
+
+      tooltip.html(tooltipContent)
+        .style("left", (d3.event.pageX + 10) + "px")
+        .style("top", (d3.event.pageY - 30) + "px")
+        .style("opacity", 1); 
+    } else {
+      var tooltipContent = `
+        <strong>${d.properties.name}</strong><br>
+        Rank: undefined<br>
+        IQ: undefined<br>
       `;
 
       tooltip.html(tooltipContent)
