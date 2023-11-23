@@ -1,4 +1,5 @@
 
+var worldData;
 
 // The svg
 var svg = d3.select("svg"),
@@ -16,16 +17,21 @@ var projection = d3.geoMercator()
 var data = d3.map();
 var colorScale = d3.scaleThreshold()
   .domain([50, 60, 70, 80, 90, 95, 100, 105])  // Adjust as needed
-  .range(d3.schemeBlues[8]); 
+  .range(d3.schemeGreens[8]); 
 
 // Load external data and boot
 d3.queue()
-  .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+  .defer(d3.json, "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
   .defer(d3.json, "https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json")
   .await(ready);
 
 
 function ready(error, topo, IQLevelData) {
+  worldData = topo
+  worldData.features = worldData.features.filter(function (d) {
+    return d.properties.name !== "Antarctica";
+  });
+
   let mouseOver = function (d) {
     d3.selectAll(".Country")
       .transition()
@@ -51,7 +57,7 @@ function ready(error, topo, IQLevelData) {
       tooltip.html(tooltipContent)
         .style("left", (d3.event.pageX + 10) + "px")
         .style("top", (d3.event.pageY - 30) + "px")
-        .style("opacity", 1); 
+        .style("opacity", 1);
     } else {
       var tooltipContent = `
         <strong>${d.properties.name}</strong><br>
@@ -78,12 +84,13 @@ function ready(error, topo, IQLevelData) {
       .style("stroke", "transparent");
 
     tooltip.style("opacity", 0);
+    
   };
 
   // Draw the map
   svg.append("g")
     .selectAll("path")
-    .data(topo.features)
+    .data(worldData.features)
     .enter()
     .append("path")
     .attr("d", d3.geoPath().projection(projection))
@@ -96,11 +103,13 @@ function ready(error, topo, IQLevelData) {
     .style("opacity", 0.8)
     .on("mouseover", mouseOver)
     .on("mouseleave", mouseLeave);
+  
 }
 
 // Define a tooltip div
 var tooltip = d3.select("body").append("div")
   .attr("class", "tooltip")
   .style("opacity", 0);
+
 
   
