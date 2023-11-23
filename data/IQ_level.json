@@ -1,7 +1,7 @@
 [
  {
    "rank": 1,
-   "country": "Hong Kong ",
+   "country": "Hong Kong",
    "IQ": 106,
    "education_expenditure": 1283,
    "avg_income": 35304,
@@ -25,7 +25,7 @@
  },
  {
    "rank": 4,
-   "country": "Taiwan ",
+   "country": "Taiwan",
    "IQ": 106,
    "education_expenditure": null,
    "avg_income": null,
@@ -89,7 +89,7 @@
  },
  {
    "rank": 12,
-   "country": "Macao ",
+   "country": "Macao",
    "IQ": 100,
    "education_expenditure": 1448,
    "avg_income": 44072,
@@ -321,7 +321,7 @@
  },
  {
    "rank": 41,
-   "country": "Bermuda ",
+   "country": "Bermuda",
    "IQ": 92,
    "education_expenditure": 1748,
    "avg_income": 108349,
@@ -569,7 +569,7 @@
  },
  {
    "rank": 72,
-   "country": "Puerto Rico ",
+   "country": "Puerto Rico",
    "IQ": 82,
    "education_expenditure": 1174,
    "avg_income": 16583,

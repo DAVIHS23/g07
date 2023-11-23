@@ -15,20 +15,17 @@ var projection = d3.geoMercator()
 // Data and color scale
 var data = d3.map();
 var colorScale = d3.scaleThreshold()
-  .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
-  .range(d3.schemeBlues[7]);
+  .domain([50, 60, 70, 80, 90, 95, 100, 105])  // Adjust as needed
+  .range(d3.schemeBlues[8]); 
 
 // Load external data and boot
 d3.queue()
   .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
-  .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function (d) {
-    data.set(d.code, +d.pop);
-  })
   .defer(d3.json, "https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json")
   .await(ready);
 
 
-function ready(error, topo, populationData, IQLevelData) {
+function ready(error, topo, IQLevelData) {
   let mouseOver = function (d) {
     d3.selectAll(".Country")
       .transition()
@@ -41,8 +38,8 @@ function ready(error, topo, populationData, IQLevelData) {
       .style("opacity", 1)
       .style("stroke", "black");
 
-    var countryData = populationData.find((country) => country.country === d.properties.name);
     var iqData = IQLevelData.find((iq) => iq.country === d.properties.name);
+    console.log(d.properties.name)
 
     if (iqData) {
       var tooltipContent = `
@@ -91,8 +88,8 @@ function ready(error, topo, populationData, IQLevelData) {
     .append("path")
     .attr("d", d3.geoPath().projection(projection))
     .attr("fill", function (d) {
-      d.total = data.get(d.id) || 0;
-      return colorScale(d.total);
+      var iqData = IQLevelData.find((iq) => iq.country === d.properties.name);
+      return iqData ? colorScale(iqData.IQ) : "gray";  // Default to gray if no IQ data is available
     })
     .style("stroke", "transparent")
     .attr("class", function (d) { return "Country" })
