@@ -1,65 +1,84 @@
+var margin = {top: 20, right: 30, bottom: 40, left: 90},
+    width = 1000 - margin.left - margin.right,
+    height = 1000 - margin.top - margin.bottom;
 
-// set the dimensions and margins of the graph
-var margin = {top: 30, right: 30, bottom: 70, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#iq_bar")
+var svgBar = d3.select("#barChart")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", "100%")
+    .attr("height", "100%")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Initialize the X axis
-var x = d3.scaleBand()
-  .range([ 0, width ])
-  .padding(0.2);
-var xAxis = svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
+d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json", function(data) {
 
-// Initialize the Y axis
-var y = d3.scaleLinear()
-  .range([ height, 0]);
-var yAxis = svg.append("g")
-  .attr("class", "myYaxis")
+  // data.sort(function(a, b) {
+  //   return a.IQ - b.IQ;
+  // });
+  
+  var top20Data = data.slice(0, 20);
 
+  top20Data.reverse()
 
-// A function that create / update the plot for a given variable:
-function update(selectedVar) {
+  // Add Y axis
+  var y = d3.scaleBand()
+    .range([height, 0])
+    .domain(top20Data.map(function (d) { return d.country; }))
+    .padding(0.1);
+  svgBar.append("g")
+    .call(d3.axisLeft(y))
 
-  // Parse the Data
-  d3.csv("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv", function(data) {
+  // X axis
+  var x = d3.scaleLinear()
+    .domain([0, d3.max(top20Data, function (d) { return d.IQ; })])
+    .range([0, width]);
+  svgBar.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
 
-    // X axis
-    x.domain(data.map(function(d) { return d.group; }))
-    xAxis.transition().duration(1000).call(d3.axisBottom(x))
+    let mouseOver = function (d) {
+      svgBar.selectAll("rect")
+        .transition()
+        .style("opacity", 0.5);
+  
+      d3.select(this)
+        .transition()
+        .style("opacity", 1)
 
-    // Add Y axis
-    y.domain([0, d3.max(data, function(d) { return +d[selectedVar] }) ]);
-    yAxis.transition().duration(1000).call(d3.axisLeft(y));
+      var tooltipContent = `
+        <strong>${d.country}</strong><br>
+        Rank: ${d.rank}<br>
+        IQ: ${d.IQ}<br>
+      `;
 
-    // variable u: map data to existing bars
-    var u = svg.selectAll("rect")
-      .data(data)
+      tooltip.html(tooltipContent)
+        .style("left", (d3.event.pageX + 10) + "px")
+        .style("top", (d3.event.pageY - 30) + "px")
+        .style("opacity", 1);
+      
+    };
+  
+    let mouseLeave = function (d) {
+      svgBar.selectAll("rect")
+        .transition()
+        .style("opacity", 0.8);
+  
+      d3.select(this)
+        .transition()
+  
+      tooltip.style("opacity", 0);
+      
+    };
 
-    // update bars
-    u
-      .enter()
-      .append("rect")
-      .merge(u)
-      .transition()
-      .duration(1000)
-        .attr("x", function(d) { return x(d.group); })
-        .attr("y", function(d) { return y(d[selectedVar]); })
-        .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d[selectedVar]); })
-        .attr("fill", "#69b3a2")
-  })
-
-}
-
-// Initialize plot
-update('iq')
+  svgBar.selectAll("myRect")
+    .data(top20Data)
+    .enter()
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", function (d) { return y(d.country); })
+    .attr("width", function (d) { return x(d.IQ); })
+    .attr("height", y.bandwidth())
+    .attr("fill", "#69b3a2")
+    .on("mouseover", mouseOver)
+    .on("mouseleave", mouseLeave)
+});

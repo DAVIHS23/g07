@@ -2,7 +2,7 @@
 var worldData;
 
 // The svg
-var svg = d3.select("svg"),
+var svg = d3.select("#iq_map"),
   width = +svg.attr("width"),
   height = +svg.attr("height");
 
