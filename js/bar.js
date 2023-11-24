@@ -1,7 +1,7 @@
 var margin = { top: 20, right: 30, bottom: 40, left: 90 },
   width = 1000 - margin.left - margin.right,
   height = 1000 - margin.top - margin.bottom;
-  
+
 var x = d3.scaleLinear().range([0, width]);
 var y = d3.scaleBand().range([height, 0]).padding(0.1);
 
@@ -86,6 +86,7 @@ function update(selectedVar) {
     });
 
     var top20Data = data.slice(0, 20);
+    top20Data.reverse();
 
     x.domain([0, d3.max(data, function (d) { return +d[selectedVar]; })]);
     y.domain(top20Data.map(function (d) { return d.country; }));
