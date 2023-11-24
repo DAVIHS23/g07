@@ -1,8 +1,7 @@
 var margin = { top: 20, right: 30, bottom: 40, left: 90 },
   width = 1000 - margin.left - margin.right,
   height = 1000 - margin.top - margin.bottom;
-
-// Define scales and axes
+  
 var x = d3.scaleLinear().range([0, width]);
 var y = d3.scaleBand().range([height, 0]).padding(0.1);
 
@@ -82,10 +81,13 @@ d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json"
 
 function update(selectedVar) {
   d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json", function (data) {
-    var top20Data = data.slice(0, 20);
-    top20Data.reverse();
+    data.sort(function (a, b) {
+      return b[selectedVar] - a[selectedVar];
+    });
 
-    x.domain([0, d3.max(top20Data, function (d) { return +d[selectedVar]; })]);
+    var top20Data = data.slice(0, 20);
+
+    x.domain([0, d3.max(data, function (d) { return +d[selectedVar]; })]);
     y.domain(top20Data.map(function (d) { return d.country; }));
 
     svgBar.select(".x-axis").transition().duration(1000).call(xAxis);
@@ -101,3 +103,4 @@ function update(selectedVar) {
     }).attr("height", y.bandwidth()).attr("fill", "#69b3a2");
   });
 }
+
