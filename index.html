@@ -43,11 +43,14 @@
     <div class="w3-content w3-container w3-padding-64" id="viz">
         <h3 class="w3-center">Visualization</h3>
         <p>
-            <button type="button" class="btn btn-light" id="iq-button" onclick="update('iq')">IQ</button>
-            <button type="button" class="btn btn-light" id="education-button" onclick="update('education')">Ausbilungskosten</button>
-            <button type="button" class="btn btn-light" id="income-button" onclick="update('income')">Einkommen</button>
-            <button type="button" class="btn btn-light" id="temp-button" onclick="update('temp')">Temperatur</button>
+            <button type="button" class="btn btn-light" id="iq-button" onclick="update('IQ')">IQ</button>
+            <button type="button" class="btn btn-light" id="education-button" onclick="update('education_expenditure')">Ausbilungskosten</button>
+            <button type="button" class="btn btn-light" id="income-button" onclick="update('avg_income')">Einkommen</button>
+            <button type="button" class="btn btn-light" id="temp-button" onclick="update('avg_temp')">Temperatur</button>
+            <button type="button" class="btn btn-light" id="malnutrition-button" onclick="update('malnutrition')">Unterernährung</button>
+
         </p>
+
 
         <svg id="iq_map" width="1000" height="600"></svg>
         <script  src="js/map.js"></script>
