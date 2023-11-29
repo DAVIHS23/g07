@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -32,6 +34,7 @@
             </a>
             <a href="#home" class="w3-bar-item w3-button"><span class="glyphicon glyphicon-home"></span></a>
             <a href="#viz" class="w3-bar-item w3-button">Visualization</a>
+            <a href="#data" class="w3-bar-item w3-button">Datensatz</a>
             <a href="#ref" class="w3-bar-item w3-button">References</a>
             <a href="#team" class="w3-bar-item w3-button">Team</a>
         </div>
@@ -51,9 +54,7 @@
             <button type="button" class="btn btn-light" id="income-button" onclick="update('avg_income')">Einkommen</button>
             <button type="button" class="btn btn-light" id="temp-button" onclick="update('avg_temp')">Temperatur</button>
             <button type="button" class="btn btn-light" id="malnutrition-button" onclick="update('malnutrition')" disabled= yes>Unterernährung</button>
-
         </p>
-
 
         <svg id="iq_map" width="1000" height="600"></svg>
         <script  src="js/map.js"></script>
@@ -61,10 +62,15 @@
         <svg id="barChart" width="9000" height="1100"></svg>
         <script  src="js/bar.js"></script>
         <script src="js/script.js"></script>
-        
     </div>
 
-    
+    <div class="w3-content w3-container w3-padding-64" id="data">
+        <h3 class="w3-center">Datensatz</h3>
+        <p>
+            <b><h5 class="w3-center">IQ-Level</h5></b>
+            <iframe src="data/IQ_level.json" allowtransparency="true"></iframe>
+        </p>
+    </div>
 
     <div class="w3-content w3-container w3-padding-64" id="ref">
         <h3 class="w3-center">References</h3>
