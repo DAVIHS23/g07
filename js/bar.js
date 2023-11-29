@@ -79,29 +79,5 @@ d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json"
   }
 });
 
-function update(selectedVar) {
-  d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json", function (data) {
-    data.sort(function (a, b) {
-      return b[selectedVar] - a[selectedVar];
-    });
 
-    var top20Data = data.slice(0, 20);
-    top20Data.reverse();
-
-    x.domain([0, d3.max(data, function (d) { return +d[selectedVar]; })]);
-    y.domain(top20Data.map(function (d) { return d.country; }));
-
-    svgBar.select(".x-axis").transition().duration(1000).call(xAxis);
-
-    svgBar.select(".y-axis").transition().duration(1000).call(yAxis);
-
-    var u = svgBar.selectAll(".myRect").data(top20Data);
-
-    u.enter().append("rect").merge(u).transition().duration(1000).attr("x", 0).attr("y", function (d) {
-      return y(d.country);
-    }).attr("width", function (d) {
-      return x(+d[selectedVar]);
-    }).attr("height", y.bandwidth()).attr("fill", "#69b3a2");
-  });
-}
 

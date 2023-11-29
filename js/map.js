@@ -12,7 +12,7 @@ var projection = d3.geoMercator()
 
 var data = d3.map();
 var colorScale = d3.scaleThreshold()
-  .domain([50, 60, 70, 80, 90, 95, 100, 105])  // Adjust as needed
+  .domain([50, 60, 70, 80, 90, 95, 100, 105])  
   .range(d3.schemeGreens[8]); 
 
 d3.queue()
@@ -104,6 +104,9 @@ function ready(error, topo, IQLevelData) {
 var tooltip = d3.select("body").append("div")
   .attr("class", "tooltip")
   .style("opacity", 0);
+
+  
+
 
 
   
