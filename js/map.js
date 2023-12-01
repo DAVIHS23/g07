@@ -5,8 +5,8 @@ var svg = d3.select("#iq_map"),
   width = +svg.attr("width"),
   height = +svg.attr("height");
 var path = d3.geoPath();
-var projection = d3.geoMercator()
-  .scale(100)
+var projection = d3.geoNaturalEarth2()
+  .scale(150)
   .center([0, 20])
   .translate([width / 2, height / 2]);
 
@@ -17,7 +17,7 @@ var colorScale = d3.scaleThreshold()
 
 d3.queue()
   .defer(d3.json, "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
-  .defer(d3.json, "https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json")
+  .defer(d3.csv, "https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv")
   .await(ready);
 
 

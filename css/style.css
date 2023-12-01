@@ -10,6 +10,25 @@ body, html {
     background-color: blue;
 }
 
+.table-container {
+  display: flex;
+  height: 50vh;
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+  overflow: hidden;
+}
+
+#barChart,
+#map,
+#dataiz_brushZoom {
+  width: 100vh;
+  height: 100vh;
+}
+
+
 .bgimg-1, .bgimg-2, .navbarbg {
   background-attachment: fixed;
   background-position: center;
@@ -27,13 +46,12 @@ body, html {
 }
 
 iframe{
-    width: 80%;
+    width: 100vh;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    margin-left: 10%;
-    margin-right: 10%;
-    height: 400px;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 100vh;
 }
 
 .w3-wide {letter-spacing: 10px;}

@@ -46,33 +46,49 @@
         </div>
     </div>
 
-    <div class="w3-content w3-container w3-padding-64" id="viz">
+    <div  id="viz">
         <h3 class="w3-center">Visualization</h3>
-        <p>
+        <div class="w3-content w3-container">
             <button type="button" class="btn btn-light" id="iq-button" onclick="update('IQ')">IQ</button>
             <button type="button" class="btn btn-light" id="education-button" onclick="update('education_expenditure')">Ausbilungskosten</button>
             <button type="button" class="btn btn-light" id="income-button" onclick="update('avg_income')">Einkommen</button>
             <button type="button" class="btn btn-light" id="temp-button" onclick="update('avg_temp')">Temperatur</button>
             <button type="button" class="btn btn-light" id="malnutrition-button" onclick="update('malnutrition')" disabled= yes>Unterernährung</button>
-        </p>
+        </div>
 
-        <svg id="iq_map" width="1000" height="600"></svg>
-        <script  src="js/map.js"></script>
-
-        <svg id="barChart" width="9000" height="1100"></svg>
-        <script  src="js/bar.js"></script>
+        <div class="table-container">
+            <div class="left-column">
+                <svg id="iq_map" width="800" height="400"></svg>
+                <script src="js/map.js"></script>
+            </div>
+            <div class="right-column">
+                <svg id="barChart"></svg>
+                <script src="js/bar.js"></script>
+            </div>
+        </div>
         <script src="js/script.js"></script>
     </div>
-
-    <div class="w3-content w3-container w3-padding-64" id="data">
-        <h3 class="w3-center">Datensatz</h3>
-        <p>
-            <b><h5 class="w3-center">IQ-Level</h5></b>
-            <iframe src="data/IQ_level.json" allowtransparency="true"></iframe>
-        </p>
+    
+    <div>
+        <div id="dataviz_brushZoom" class="w3-center"></div>
+        <script src="js/brushScatter.js"></script>
     </div>
 
-    <div class="w3-content w3-container w3-padding-64" id="ref">
+    <div id="data">
+        <h3 class="w3-center">Datensatz</h3>
+        <div class="table-container">
+            <div class="left-column">
+                <b><h3>IQ-Level</h3></b>
+                <iframe src="data/IQ_level.json"></iframe>
+            </div>
+            <div class="right-column">
+                <b><h3>Unterernährung (TODO:)</h3></b>
+                <iframe src="data/IQ_level.json"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-content w3-container" id="ref">
         <h3 class="w3-center">References</h3>
         <p>D3 Map<br />
             https://d3-graph-gallery.com/graph/choropleth_hover_effect.html
@@ -83,7 +99,7 @@
         </p>
     </div>
 
-    <div class="w3-content w3-container w3-padding-64" id="Team">
+    <div class="w3-content w3-container" id="team">
         <h3 class="w3-center">Team</h3>
         <p>
             Benjamin Anthamatten, Vithursiya Vijayasingam

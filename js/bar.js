@@ -1,6 +1,6 @@
 var margin = { top: 20, right: 30, bottom: 40, left: 90 },
-  width = 1000 - margin.left - margin.right,
-  height = 1000 - margin.top - margin.bottom;
+    width = 800 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 var x = d3.scaleLinear().range([0, width]);
 var y = d3.scaleBand().range([height, 0]).padding(0.1);
@@ -16,12 +16,12 @@ var svgBar = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json", function (data) {
+d3.csv("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv", function (data) {
   var top20Data = data.slice(0, 20);
   top20Data.reverse();
 
   x.domain([0, d3.max(top20Data, function (d) { return d.IQ; })]);
-  y.domain(top20Data.map(function (d) { return d.country; }));
+  y.domain(top20Data.map(function (d) { return d.country; })).padding(0.2);
 
   svgBar.append("g").attr("class", "y-axis").call(d3.axisLeft(y));
 
@@ -77,6 +77,10 @@ d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json"
 
     tooltip.style("opacity", 0);
   }
+
+  svgBar.select(".x-axis")
+    .attr("transform", "translate(0," + (height + margin.bottom + 50) + ")")
+    .call(xAxis);
 });
 
 
