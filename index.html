@@ -22,7 +22,7 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-
+    <script src="js/dataIQ.js"></script>
 </head>
 
 <body>
@@ -67,12 +67,19 @@
             </div>
         </div>
         <script src="js/script.js"></script>
+        <div class="table-container" >
+            <div class="left-column">
+                <div id="dataviz_iqandavg"></div>
+                <script src="js/scatterplotIQ_AVG.js"></script>
+            </div>
+            <div class="right-column">
+                <div id="dataviz_brushZoom"></div>
+                <script src="js/brushScatter.js"></script>
+            </div>
+        </div>
     </div>
     
-    <div>
-        <div id="dataviz_brushZoom" class="w3-center"></div>
-        <script src="js/brushScatter.js"></script>
-    </div>
+    
 
     <div id="data">
         <h3 class="w3-center">Datensatz</h3>
