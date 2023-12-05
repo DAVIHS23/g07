@@ -1,8 +1,8 @@
 ﻿rank,country,IQ,education_expenditure,avg_income,avg_temp
-1,Hong Kong ,106,1283,35304,26.2
+1,Hong Kong,106,1283,35304,26.2
 2,Japan,106,1340,40964,19.2
 3,Singapore,106,1428,41100,31.5
-4,Taiwan ,106,,,26.9
+4,Taiwan,106,,,26.9
 5,China,104,183,4654,19.1
 6,South Korea,103,1024,22805,18.2
 7,Netherlands,101,2386,45337,14.4
@@ -10,13 +10,13 @@
 9,Canada,100,2052,40207,7.4
 10,North Korea,100,,,15.3
 11,Luxembourg,100,3665,71296,14.7
-12,Macao ,100,1448,44072,26.1
+12,Macao,100,1448,44072,26.1
 13,Germany,100,1883,39911,13.8
 14,Switzerland,100,3550,70399,15.2
 15,Estonia,100,749,13770,10.1
 16,Australia,99,2343,42948,24.3
 17,United Kingdom,99,2076,40698,12.9
-18,Greenland ,99,4518,24486,0.4
+18,Greenland,99,4518,24486,0.4
 19,Iceland,99,3812,47106,8.1
 20,Austria,99,2341,42635,13.2
 21,Hungary,99,585,11391,16.6
@@ -70,7 +70,7 @@
 69,Albania,82,118,3513,21.4
 70,United Arab Emirates,82,805,38644,34.4
 71,Dominican Republic,82,158,4964,31.7
-72,Puerto Rico ,82,1174,16583,30.4
+72,Puerto Rico,82,1174,16583,30.4
 73,Afghanistan,81,15,474,24.4
 74,Iran,81,176,4545,26.6
 75,Pakistan,81,27,985,30.9
