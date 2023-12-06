@@ -23,7 +23,7 @@ body, html {
 
 #barChart,
 #map,
-#dataiz_brushZoom {
+#dataviz_iqandunderweight {
   width: 100vh;
   height: 100vh;
 }

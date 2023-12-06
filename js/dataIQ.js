@@ -863,4 +863,4 @@ var dataIQ_ = [
       "avg_income": 595,
       "avg_temp": 24.6
     }
-   ]   
+   ]  
