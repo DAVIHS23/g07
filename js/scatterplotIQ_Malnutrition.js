@@ -69,11 +69,11 @@ var clip = svgScatterplotMal.append("defs").append("svg:clipPath")
     .attr("y", 0);
 
 // Add brushing
-var brush = d3.brushX()
+var brushMal = d3.brushX()
     .extent([[0, 0], [width, height]])
-    .on("end", updateChart);
+    .on("end", updateChartMal);
 
-var scatter = svgScatterplotMal.append('g')
+var scatterMal = svgScatterplotMal.append('g')
     .attr("clip-path", "url(#clip)");
 
 
@@ -83,7 +83,7 @@ var scatter = svgScatterplotMal.append('g')
 //     .range([ "#440154ff", "#21908dff", "#fde725ff"])
 
 // Add circles
-scatter
+scatterMal
     .selectAll("circle")
     .data(combinedData)
     .enter()
@@ -99,7 +99,7 @@ scatter
     .style("opacity", 0.5);
 
 // Add country names above the circles
-scatter
+scatterMal
     .selectAll("text.country-label")
     .data(combinedData)
     .enter()
@@ -115,37 +115,37 @@ scatter
     .style("font-size", "10px")
     .style("fill", "black");
 
-scatter
+scatterMal
     .append("g")
     .attr("class", "brush")
-    .call(brush);
+    .call(brushMal);
 
-var idleTimeout;
+var idleTimeoutMal;
 
-function idled() {
-    idleTimeout = null;
+function idledMal() {
+    idleTimeoutMal = null;
 }
 
-function updateChart() {
+function updateChartMal() {
     var extent = d3.event.selection;
 
     if (!extent) {
-        if (!idleTimeout) return idleTimeout = setTimeout(idled, 350);
+        if (!idleTimeoutMal) return idleTimeoutMal = setTimeout(idledMal, 350);
         xScaleMal.domain([d3.min(combinedData, d => d.IQ), d3.max(combinedData, d => d.IQ)]);
     } else {
         xScaleMal.domain([xScaleMal.invert(extent[0]), xScaleMal.invert(extent[1])]);
-        scatter.select(".brush").call(brush.move, null);
+        scatterMal.select(".brush").call(brushMal.move, null);
     }
 
     XxAxisMal.transition().duration(1000).call(d3.axisBottom(xScaleMal));
-    scatter
+    scatterMal
         .selectAll("circle")
         .transition().duration(1000)
         .attr("cx", function (d) { return xScaleMal(d.IQ); })
         .attr("cy", function (d) { return yScaleMal(d.Underweight); });
 
     // Update country names during zoom
-    scatter
+    scatterMal
         .selectAll("text.country-label")
         .attr("x", function(d) { return xScaleMal(d.IQ); })
         .attr("y", function(d) { return yScaleMal(d.Underweight) - 12; });
