@@ -34,6 +34,9 @@ d3.csv("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv", 
     .append("rect")
     .attr("class", "myRect") 
     .attr("x", 0)
+    .attr("data-country", function (d) {
+      return d.country;
+    })
     .attr("y", function (d) {
       return y(d.country);
     })

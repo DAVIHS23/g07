@@ -42,6 +42,12 @@ function ready(error, topo, IQLevelData) {
 
     var iqData = IQLevelData.find((iq) => iq.country === d.properties.name);
 
+    // Remove highlighting from the corresponding bar in the bar chart
+    var bar = svgBar.select(".myRect[data-country='" + d.properties.name + "']");
+      if (bar) {
+          bar.transition().style("opacity", 0.2);
+      }
+
     if (iqData) {
       var tooltipContent = `
         <strong>${iqData.country}</strong><br>
@@ -68,6 +74,10 @@ function ready(error, topo, IQLevelData) {
   };
 
   let mouseLeave = function (d) {
+    var bar = svgBar.select(".myRect[data-country='" + d.properties.name + "']");
+    if (bar) {
+        bar.transition().style("opacity", 0.8);
+    }
     d3.selectAll(".Country")
       .transition()
       .duration(200)
