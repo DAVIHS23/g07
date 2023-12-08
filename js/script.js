@@ -1,7 +1,13 @@
+var selectedChoose = "IQ"
 function update(selectedVar) {
+  selectedChoose = selectedVar
   d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json", function (data) {
     data.sort(function (a, b) {
-      return b[selectedVar] - a[selectedVar];
+       // Compare based on the selected property
+       const diff = b[selectedChoose] - a[selectedChoose];
+
+       // If the selected property values are equal, compare based on the "country" property
+       return diff !== 0 ? diff : a.country.localeCompare(b.country);
     });
 
     worldData.features.forEach(function (feature) {

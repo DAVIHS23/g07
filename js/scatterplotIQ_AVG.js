@@ -1,5 +1,6 @@
 // Filter out data points where avg_income is null
-dataIQ_ = dataIQ_.filter(function(d) {
+var dataIQSC = JSON.parse(JSON.stringify(dataIQ_));
+dataIQSC = dataIQSC.filter(function(d) {
     return d.avg_income !== null;
 });
 
@@ -14,8 +15,8 @@ var normalizeQuantile = function (data, key) {
     });
 };
 
-data = normalizeQuantile(dataIQ_, 'IQ');
-data = normalizeQuantile(dataIQ_, 'avg_income');
+dataSC = normalizeQuantile(dataIQSC, 'IQ');
+dataSC = normalizeQuantile(dataIQSC, 'avg_income');
 
 var margin = { top: 10, right: 30, bottom: 30, left: 60 };
 var width = 800 - margin.left - margin.right;
@@ -29,8 +30,8 @@ var svgScatterplot = d3.select("#dataviz_iqandavg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var XxScale = d3.scaleLinear().domain([d3.min(data, d => d.IQ) - 5, d3.max(data, d => d.IQ) + 10]).range([0, width]);
-var YyScale = d3.scaleLinear().domain([d3.min(data, d => d.avg_income) - 5000, d3.max(data, d => d.avg_income) + 5000]).range([height, 0]);
+var XxScale = d3.scaleLinear().domain([d3.min(dataSC, d => d.IQ) - 5, d3.max(dataSC, d => d.IQ) + 10]).range([0, width]);
+var YyScale = d3.scaleLinear().domain([d3.min(dataSC, d => d.avg_income) - 5000, d3.max(dataSC, d => d.avg_income) + 5000]).range([height, 0]);
 
 // Add X axis
 var XxAxis = svgScatterplot.append("g")
@@ -80,7 +81,7 @@ var scatter = svgScatterplot.append('g')
 // Add circles
 scatter
     .selectAll("circle")
-    .data(data)
+    .data(dataSC)
     .enter()
     .append("circle")
     .transition()
@@ -96,7 +97,7 @@ scatter
 // Add country names above the circles
 scatter
     .selectAll("text.country-label")
-    .data(data)
+    .data(dataSC)
     .enter()
     .append("text")
     .attr("class", "country-label")
@@ -126,7 +127,7 @@ function updateChart() {
 
     if (!extent) {
         if (!idleTimeout) return idleTimeout = setTimeout(idled, 350);
-        XxScale.domain([d3.min(data, d => d.IQ), d3.max(data, d => d.IQ)]);
+        XxScale.domain([d3.min(dataSC, d => d.IQ), d3.max(dataSC, d => d.IQ)]);
     } else {
         XxScale.domain([XxScale.invert(extent[0]), XxScale.invert(extent[1])]);
         scatter.select(".brush").call(brush.move, null);

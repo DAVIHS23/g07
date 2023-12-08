@@ -1,8 +1,16 @@
-
 var worldData;
-var data = dataIQ_
+var data = [...dataIQ_]
+var data2 = [...dataIQ_]
+data.sort(function (a, b) {
+  // Compare based on the selected property
+  const diff = b.IQ - a.IQ;
+
+  // If the selected property values are equal, compare based on the "country" property
+  return diff !== 0 ? diff : a.country.localeCompare(b.country);
+});
 var top20Data = data.slice(0, 20);
 top20Data.reverse();
+
 var svg = d3.select("#iq_map"),
   width = +svg.attr("width"),
   height = +svg.attr("height");
@@ -43,21 +51,33 @@ function ready(error, topo, IQLevelData) {
       .style("stroke", "black");
 
     var iqData = IQLevelData.find((iq) => iq.country === d.properties.name);
+    console.log("asd")
 
     // Remove highlighting from the corresponding bar in the bar chart
     var bar = svgBar.select(".myRect[data-country='" + d.properties.name + "']");
       if (bar) {
           bar.transition().style("opacity", 0.2);
       }
+
+      data2.sort(function (a, b) {
+        // Compare based on the selected property
+        const diff = b[selectedChoose] - a[selectedChoose];
+
+        // If the selected property values are equal, compare based on the "country" property
+        return diff !== 0 ? diff : a.country.localeCompare(b.country);
+      });
       
-      var isNotInTop20 = top20Data.findIndex((item) => item.country === d.properties.name) === -1;
-      var top = [...top20Data];
+      var top20Data2 = data2.slice(0, 20);
+      top20Data2.reverse();
+      console.log("data2", top20Data2)
+      var isNotInTop20 = top20Data2.findIndex((item) => item.country === d.properties.name) === -1;
+      var top = [...top20Data2];
 
       if (isNotInTop20) {
         console.log("asd")
         // Replace the last country in the bar chart with the current country
         top[0] = iqData
-        console.log(top20Data)
+        console.log(top20Data2)
 
         y.domain(top.map(function (d) { return d.country; }));
 
@@ -77,7 +97,7 @@ function ready(error, topo, IQLevelData) {
         //   });
 
 
-        svgBar.selectAll(".myRect[data-country='" + top20Data[0].country + "']")
+        svgBar.selectAll(".myRect[data-country='" + top20Data2[0].country + "']")
           .data(top)
           .filter(function (d) {
               // Filter the selection based on the condition (e.g., matching the selected country)
@@ -88,7 +108,7 @@ function ready(error, topo, IQLevelData) {
               return y(top[0].country);
           })
           .attr("width", function (d) {
-              return x(top[0].IQ);
+              return x(top[0][selectedChoose]);
           });
 
     }
