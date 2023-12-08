@@ -1,6 +1,8 @@
 
 var worldData;
-
+var data = dataIQ_
+var top20Data = data.slice(0, 20);
+top20Data.reverse();
 var svg = d3.select("#iq_map"),
   width = +svg.attr("width"),
   height = +svg.attr("height");
@@ -31,12 +33,12 @@ function ready(error, topo, IQLevelData) {
   let mouseOver = function (d) {
     d3.selectAll(".Country")
       .transition()
-      .duration(200)
+      .duration(100)
       .style("opacity", 0.5);
 
     d3.select(this)
       .transition()
-      .duration(200)
+      .duration(50)
       .style("opacity", 1)
       .style("stroke", "black");
 
@@ -47,6 +49,50 @@ function ready(error, topo, IQLevelData) {
       if (bar) {
           bar.transition().style("opacity", 0.2);
       }
+      
+      var isNotInTop20 = top20Data.findIndex((item) => item.country === d.properties.name) === -1;
+      var top = [...top20Data];
+
+      if (isNotInTop20) {
+        console.log("asd")
+        // Replace the last country in the bar chart with the current country
+        top[0] = iqData
+        console.log(top20Data)
+
+        y.domain(top.map(function (d) { return d.country; }));
+
+
+        svgBar.select(".y-axis").transition().duration(1000).call(yAxis);
+
+        var u = svgBar.selectAll(".myRect").data(top);
+        // Update the existing bars
+        // svgBar.selectAll(".myRect")
+        //   .data(top20Data)
+        //   .transition()
+        //   .attr("y", function (d) {
+        //       return y(d.country);
+        //   })
+        //   .attr("width", function (d) {
+        //       return x(d.IQ);
+        //   });
+
+
+        svgBar.selectAll(".myRect[data-country='" + top20Data[0].country + "']")
+          .data(top)
+          .filter(function (d) {
+              // Filter the selection based on the condition (e.g., matching the selected country)
+              return top[0].country;
+          })
+          .transition()
+          .attr("y", function (d) {
+              return y(top[0].country);
+          })
+          .attr("width", function (d) {
+              return x(top[0].IQ);
+          });
+
+    }
+
 
     if (iqData) {
       var tooltipContent = `
@@ -81,7 +127,7 @@ function ready(error, topo, IQLevelData) {
     d3.selectAll(".Country")
       .transition()
       .duration(200)
-      .style("opacity", 0.8);
+      .style("opacity", 1);
 
     d3.select(this)
       .transition()

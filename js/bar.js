@@ -16,10 +16,6 @@ var svgBar = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv", function (data) {
-  var top20Data = data.slice(0, 20);
-  top20Data.reverse();
-
   x.domain([0, d3.max(top20Data, function (d) { return d.IQ; })]);
   y.domain(top20Data.map(function (d) { return d.country; })).padding(0.2);
 
@@ -82,9 +78,9 @@ d3.csv("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv", 
   }
 
   svgBar.select(".x-axis")
-    .attr("transform", "translate(0," + (height + margin.bottom + 50) + ")")
+    .attr("transform", "translate(0," + (height + 5) + ")")
     .call(xAxis);
-});
+
 
 
 

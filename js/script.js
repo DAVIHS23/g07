@@ -46,6 +46,10 @@ function update(selectedVar) {
       return y(d.country);
     }).attr("width", function (d) {
       return x(+d[selectedVar]);
-    }).attr("height", y.bandwidth()).attr("fill", "#69b3a2");
+    }).attr("height", y.bandwidth()).attr("fill", "#69b3a2")
+    .attr("data-country", function (d) {
+      return d.country;
+    })
+    ;
   });
 }
