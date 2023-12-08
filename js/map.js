@@ -171,6 +171,9 @@ function ready(error, topo, IQLevelData) {
     })
     .style("stroke", "transparent")
     .attr("class", function (d) { return "Country" })
+    .attr("data-country-map", function (d) {
+      return d.properties.name;
+    })
     .style("opacity", 0.8)
     .on("mouseover", mouseOver)
     .on("mouseleave", mouseLeave);
