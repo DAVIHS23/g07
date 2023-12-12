@@ -53,10 +53,32 @@ var svgBar = d3
       .transition()
       .style("opacity", 1);
 
+    let nameOfInfo = "undefined";
+    let valueOfInfo = "undefined";
+
+    switch (selectedChoose) {
+      case "IQ":
+        nameOfInfo = "IQ";
+        valueOfInfo = d.rank;
+        break;
+      case "education_expenditure":
+        nameOfInfo = "Ausbildungskosten";
+        valueOfInfo = d[selectedChoose] + " $";
+        break;
+      case "avg_income":
+        nameOfInfo = "⌀ Einkommen";
+        valueOfInfo = d[selectedChoose] + " $";
+        break;
+      case "avg_temp":
+        nameOfInfo = "⌀ Temperatur";
+        valueOfInfo = d[selectedChoose] + " °C";
+        break;
+    }
+
     var tooltipContent = `
       <strong>${d.country}</strong><br>
-      Rank: ${d.rank}<br>
-      IQ: ${d.IQ}<br>
+      IQ-Rank: ${d.rank}<br>
+      ${nameOfInfo}: ${valueOfInfo}<br>
     `;
 
     tooltip

@@ -115,20 +115,42 @@ function ready(error, topo, IQLevelData) {
 
 
     if (iqData) {
+      let nameOfInfo = "undefined";
+      let valueOfInfo = "undefined";
+
+      switch (selectedChoose) {
+        case "IQ":
+          nameOfInfo = "IQ";
+          valueOfInfo = iqData.rank;
+          break;
+        case "education_expenditure":
+          nameOfInfo = "Ausbildungskosten";
+          valueOfInfo = iqData[selectedChoose] + " $";
+          break;
+        case "avg_income":
+          nameOfInfo = "⌀ Einkommen";
+          valueOfInfo = iqData[selectedChoose] + " $";
+          break;
+        case "avg_temp":
+          nameOfInfo = "⌀ Temperatur";
+          valueOfInfo = iqData[selectedChoose] + " °C";
+          break;
+      }
+
       var tooltipContent = `
         <strong>${iqData.country}</strong><br>
-        Rank: ${iqData.rank}<br>
-        IQ: ${iqData.IQ}<br>
+        IQ-Rank: ${iqData.rank}<br>
+        ${nameOfInfo}: ${valueOfInfo}<br>
       `;
 
       tooltip.html(tooltipContent)
         .style("left", (d3.event.pageX + 10) + "px")
         .style("top", (d3.event.pageY - 30) + "px")
         .style("opacity", 1);
-    } else {
+    }  else {
       var tooltipContent = `
         <strong>${d.properties.name}</strong><br>
-        Rank: undefined<br>
+        IQ Rank: undefined<br>
         IQ: undefined<br>
       `;
 
