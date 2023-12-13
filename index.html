@@ -50,13 +50,16 @@
         </div>
     </div>
 
-    <div  id="viz">
+    <div id="viz">
         <h3 class="w3-center">Visualization</h3>
         <div class="w3-content w3-container">
             <button type="button" class="btn btn-light" id="iq-button" onclick="update('IQ')">IQ</button>
-            <button type="button" class="btn btn-light" id="education-button" onclick="update('education_expenditure')">Ausbilungskosten</button>
-            <button type="button" class="btn btn-light" id="income-button" onclick="update('avg_income')">Einkommen</button>
-            <button type="button" class="btn btn-light" id="temp-button" onclick="update('avg_temp')">Temperatur</button>
+            <button type="button" class="btn btn-light" id="education-button"
+                onclick="update('education_expenditure')">Ausbilungskosten</button>
+            <button type="button" class="btn btn-light" id="income-button"
+                onclick="update('avg_income')">Einkommen</button>
+            <button type="button" class="btn btn-light" id="temp-button"
+                onclick="update('avg_temp')">Temperatur</button>
             <!-- <button type="button" class="btn btn-light" id="malnutrition-button" onclick="update('malnutrition')" disabled= yes>Unterernährung</button> -->
         </div>
 
@@ -71,45 +74,53 @@
             </div>
         </div>
         <script src="js/script.js"></script>
-        <div class="table-container" >
-            <div class="left-column">
-                <div id="dataviz_iqandavg"></div>
-                <script src="js/scatterplotIQ_AVG.js"></script>
-            </div>
-            <div class="right-column">
-                <div id="dataviz_iqandunderweight"></div>
-                <script src="js/scatterplotIQ_Malnutrition.js"></script>
-            </div>
-        </div>
-        <div class="table-container">
-            <div class="left-column">
-                <div id="dataviz_brushZoom"></div>
-                <script src="js/scatterplot_Malnutrition.js"></script>
-            </div>
+        <div class="w3-content w3-container">
+            <div id="countryname">Japan</div>
+            <div id="dataviz_underweightbyCountry"></div>
+            <script src="js/scatterplot_Malnutrition.js"></script>
         </div>
     </div>
-    
-    
+    <div class="table-container">
+        <div class="left-column">
+            <div id="dataviz_iqandavg"></div>
+            <script src="js/scatterplotIQ_AVG.js"></script>
+        </div>
+        <div class="right-column">
+            <div id="dataviz_iqandunderweight"></div>
+            <script src="js/scatterplotIQ_Malnutrition.js"></script>
+        </div>
+    </div>
+    </div>
+
+
 
     <div id="data">
         <h3 class="w3-center">Datensatz</h3>
         <div class="table-container">
             <div class="left-column">
-                <b><h3>IQ-Level</h3></b>
+                <b>
+                    <h3>IQ-Level</h3>
+                </b>
                 <iframe src="data/IQ_level.json"></iframe>
             </div>
             <div class="right-column">
-                <b><h3>Unterernährung Rohdaten</h3></b>
+                <b>
+                    <h3>Unterernährung Rohdaten</h3>
+                </b>
                 <iframe src="data/malnutrition.json"></iframe>
             </div>
         </div>
         <div class="table-container">
             <div class="left-column">
-                <b><h3>Unterernährung Filter</h3></b>
+                <b>
+                    <h3>Unterernährung Filter</h3>
+                </b>
                 <!-- <iframe src="data/malnutrition_output.csv"></iframe> -->
             </div>
             <div class="right-column">
-                <b><h3>IQ & Unterernährung Merge</h3></b>
+                <b>
+                    <h3>IQ & Unterernährung Merge</h3>
+                </b>
                 <!-- <iframe src="data/merge_output.csv"></iframe> -->
             </div>
         </div>
@@ -120,18 +131,18 @@
         <img src="image/sketch.jpg" alt="sketch">
     </div>
 
-    <div id="ref">
+    <div class="w3-content w3-container" id="ref">
         <h3>References</h3>
         <p>D3 Map<br />
             https://d3-graph-gallery.com/graph/choropleth_hover_effect.html
         </p>
         <p>D3 Bar<br />
-            https://d3-graph-gallery.com/graph/barplot_horizontal.html 
+            https://d3-graph-gallery.com/graph/barplot_horizontal.html
             https://d3-graph-gallery.com/graph/barplot_button_data_csv.html
         </p>
     </div>
 
-    <div id="team">
+    <div class="w3-content w3-container" id="team">
         <h3 class="w3-center">Team</h3>
         <p>
             Benjamin Anthamatten, Vithursiya Vijayasingam
