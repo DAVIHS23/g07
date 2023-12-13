@@ -23,12 +23,20 @@ function update(selectedVar) {
         var minValue = d3.min(data, d => +d[selectedVar]);
         var maxValue = d3.max(data, d => +d[selectedVar]);
 
-        var domainValues = d3.range(minValue, maxValue, (maxValue - minValue) / 7);
+        var domainValues = d3.range(minValue , maxValue,Math.round((maxValue - minValue) / 8));
         console.log(domainValues);
-        var colorScale = d3.scaleThreshold()
+        if (selectedChoose == "IQ"){
+          colorScale = d3.scaleThreshold()
+            .domain(IQ_Domain)
+            .range(d3.schemeBlues[8]);
+        } else {
+          colorScale = d3.scaleThreshold()
             .domain(domainValues)
-            .range(d3.schemeGreens[8]);
-            
+            .range(d3.schemeBlues[8]);
+        }
+        
+      
+
       svg.selectAll("path")
         .transition()
         .duration(1000)
@@ -57,5 +65,34 @@ function update(selectedVar) {
       return d.country;
     })
     ;
+    updateLegend();
   });
+}
+
+
+// Function to create/update the legend
+function updateLegend() {
+  console.log(colorScale.range())
+  // Remove existing legend items
+  legendSvg.selectAll("*").remove();
+
+  // Append rectangles and text for updated legend items
+  legendSvg.selectAll("rect")
+    .data(colorScale.range())
+    .enter()
+    .append("rect")
+    .attr("x", 10)
+    .attr("y", function (d, i) { return 20 * i; })
+    .attr("width", 20)
+    .attr("height", 20)
+    .style("fill", function (d) { return d; });
+
+  legendSvg.selectAll("text")
+    .data(colorScale.domain())
+    .enter()
+    .append("text")
+    .attr("x", 40)
+    .attr("y", function (d, i) { return 20 * i + 15; })
+    .style("font-size", "12px")
+    .text(function (d) { return d; });
 }

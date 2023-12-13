@@ -1,6 +1,10 @@
 var worldData;
 var data = [...dataIQ_]
 var data2 = [...dataIQ_]
+var colorScale
+var legendSvg
+var legendColors
+var IQ_Domain = [50, 60, 70, 80, 90, 95, 100, 105]
 data.sort(function (a, b) {
   // Compare based on the selected property
   const diff = b.IQ - a.IQ;
@@ -21,9 +25,9 @@ var projection = d3.geoNaturalEarth2()
   .translate([width / 2, height / 2]);
 
 var data = d3.map();
-var colorScale = d3.scaleThreshold()
+colorScale = d3.scaleThreshold()
   .domain([50, 60, 70, 80, 90, 95, 100, 105])  
-  .range(d3.schemeGreens[8]); 
+  .range(d3.schemeBlues[8]); 
 
 d3.queue()
   .defer(d3.json, "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
@@ -56,7 +60,7 @@ function ready(error, topo, IQLevelData) {
     // Remove highlighting from the corresponding bar in the bar chart
     var bar = svgBar.select(".myRect[data-country='" + d.properties.name + "']");
       if (bar) {
-          bar.transition().style("opacity", 0.2);
+          bar.transition().style("opacity", 0.5);
       }
 
       data2.sort(function (a, b) {
@@ -164,7 +168,7 @@ function ready(error, topo, IQLevelData) {
   let mouseLeave = function (d) {
     var bar = svgBar.select(".myRect[data-country='" + d.properties.name + "']");
     if (bar) {
-        bar.transition().style("opacity", 0.8);
+        bar.transition().style("opacity", 1);
     }
     d3.selectAll(".Country")
       .transition()
@@ -179,6 +183,33 @@ function ready(error, topo, IQLevelData) {
     tooltip.style("opacity", 0);
     
   };
+
+  legendSvg = d3.select("#iq_map_legend")
+      .attr("width", 100)
+      .attr("height", height);
+
+  // Define legend colors
+  legendColors = colorScale.range();
+
+  // Append rectangles and text for legend items
+  legendSvg.selectAll("rect")
+    .data(legendColors)
+    .enter()
+    .append("rect")
+    .attr("x", 10)
+    .attr("y", function (d, i) { return 20 * i; })
+    .attr("width", 20)
+    .attr("height", 20)
+    .style("fill", function (d) { return d; });
+
+  legendSvg.selectAll("text")
+    .data(colorScale.domain())
+    .enter()
+    .append("text")
+    .attr("x", 40)
+    .attr("y", function (d, i) { return 20 * i + 15; })
+    .style("font-size", "12px")
+    .text(function (d) { return d; });
 
   // Draw the map
   svg.append("g")
@@ -199,6 +230,11 @@ function ready(error, topo, IQLevelData) {
     .style("opacity", 0.8)
     .on("mouseover", mouseOver)
     .on("mouseleave", mouseLeave);
+
+    // Create SVG for the legend
+
+// ... (your existing code)
+
   
 }
 

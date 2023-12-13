@@ -94,7 +94,7 @@ scatterMal
     .attr("cx", function (d) { return xScaleMal(d.IQ); })
     .attr("cy", function (d) { return yScaleMal(d.Underweight); })
     .attr("r", 5)
-    .style("fill", "green")
+    .style("fill", "blue")
     // .style("fill", function (d) { return color(d.Species) } )
     .style("opacity", 0.5);
 

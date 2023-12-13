@@ -40,7 +40,7 @@ var svgBar = d3
       return x(d.IQ);
     })
     .attr("height", y.bandwidth())
-    .attr("fill", "#69b3a2")
+    .attr("fill", "#6baed6")
     .on("mouseover", mouseOver)
     .on("mouseleave", mouseLeave);
 

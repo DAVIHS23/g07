@@ -90,7 +90,7 @@ scatter
     .attr("cx", function (d) { return XxScale(d.IQ); })
     .attr("cy", function (d) { return YyScale(d.avg_income); })
     .attr("r", 5)
-    .style("fill", "green")
+    .style("fill", "blue")
     // .style("fill", function (d) { return color(d.Species) } )
     .style("opacity", 0.5);
 

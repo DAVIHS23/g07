@@ -28,10 +28,12 @@ img {
 }
 
 #barChart,
-#map,
-#dataviz_iqandunderweight {
+#map{
   width: 100vh;
   height: 100vh;
+}
+#dataviz_iqandavg{
+  margin-left: 20px;
 }
 
 
