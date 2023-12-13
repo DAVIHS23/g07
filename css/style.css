@@ -9,6 +9,12 @@ body, html {
 .home{
     background-color: blue;
 }
+img {
+  max-width: 100%; 
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
 .table-container {
   display: flex;
@@ -37,7 +43,7 @@ body, html {
 }
 
 .bgimg-1 {
-  background-image: url('https://cdn.laenderdaten.info/pics/og/brain.jpg');
+  background-image: url('https://th.bing.com/th/id/OIG.9_zSf2yPykWknvyVvs6U?pid=ImgGn');
   min-height: 100%;
 }
 

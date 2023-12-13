@@ -25,6 +25,7 @@
     <script src="js/dataIQ.js"></script>
     <script src="js/dataMalNutrition.js"></script>
 
+
 </head>
 
 <body>
@@ -37,6 +38,7 @@
             <a href="#home" class="w3-bar-item w3-button"><span class="glyphicon glyphicon-home"></span></a>
             <a href="#viz" class="w3-bar-item w3-button">Visualization</a>
             <a href="#data" class="w3-bar-item w3-button">Datensatz</a>
+            <a href="#sketch" class="w3-bar-item w3-button">Skizze</a>
             <a href="#ref" class="w3-bar-item w3-button">References</a>
             <a href="#team" class="w3-bar-item w3-button">Team</a>
         </div>
@@ -55,7 +57,7 @@
             <button type="button" class="btn btn-light" id="education-button" onclick="update('education_expenditure')">Ausbilungskosten</button>
             <button type="button" class="btn btn-light" id="income-button" onclick="update('avg_income')">Einkommen</button>
             <button type="button" class="btn btn-light" id="temp-button" onclick="update('avg_temp')">Temperatur</button>
-            <button type="button" class="btn btn-light" id="malnutrition-button" onclick="update('malnutrition')" disabled= yes>Unterernährung</button>
+            <!-- <button type="button" class="btn btn-light" id="malnutrition-button" onclick="update('malnutrition')" disabled= yes>Unterernährung</button> -->
         </div>
 
         <div class="table-container">
@@ -79,6 +81,12 @@
                 <script src="js/scatterplotIQ_Malnutrition.js"></script>
             </div>
         </div>
+        <div class="table-container">
+            <div class="left-column">
+                <div id="dataviz_brushZoom"></div>
+                <script src="js/scatterplot_Malnutrition.js"></script>
+            </div>
+        </div>
     </div>
     
     
@@ -91,14 +99,29 @@
                 <iframe src="data/IQ_level.json"></iframe>
             </div>
             <div class="right-column">
-                <b><h3>Unterernährung (TODO:)</h3></b>
-                <iframe src="data/IQ_level.json"></iframe>
+                <b><h3>Unterernährung Rohdaten</h3></b>
+                <iframe src="data/malnutrition.json"></iframe>
+            </div>
+        </div>
+        <div class="table-container">
+            <div class="left-column">
+                <b><h3>Unterernährung Filter</h3></b>
+                <!-- <iframe src="data/malnutrition_output.csv"></iframe> -->
+            </div>
+            <div class="right-column">
+                <b><h3>IQ & Unterernährung Merge</h3></b>
+                <!-- <iframe src="data/merge_output.csv"></iframe> -->
             </div>
         </div>
     </div>
 
-    <div class="w3-content w3-container" id="ref">
-        <h3 class="w3-center">References</h3>
+    <div id="sketch">
+        <h3 class="w3-center">Skizze</h3>
+        <img src="image/sketch.jpg" alt="sketch">
+    </div>
+
+    <div id="ref">
+        <h3>References</h3>
         <p>D3 Map<br />
             https://d3-graph-gallery.com/graph/choropleth_hover_effect.html
         </p>
@@ -108,7 +131,7 @@
         </p>
     </div>
 
-    <div class="w3-content w3-container" id="team">
+    <div id="team">
         <h3 class="w3-center">Team</h3>
         <p>
             Benjamin Anthamatten, Vithursiya Vijayasingam
