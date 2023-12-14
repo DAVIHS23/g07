@@ -11,12 +11,10 @@ var combinedData = dataIQ_M.map(function(dIQ) {
         Underweight: matchingData.Underweight
       };
     } else {
-      return null; // Exclude countries with no match
+      return null; 
     }
 }).filter(Boolean);
 
-// Filter out data points where IQ is null
-// Filter out data points where IQ is nul
 console.log(combinedData)
 
 

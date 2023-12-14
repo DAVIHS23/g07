@@ -3,10 +3,8 @@ function update(selectedVar) {
   selectedChoose = selectedVar
   d3.json("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.json", function (data) {
     data.sort(function (a, b) {
-       // Compare based on the selected property
        const diff = b[selectedChoose] - a[selectedChoose];
 
-       // If the selected property values are equal, compare based on the "country" property
        return diff !== 0 ? diff : a.country.localeCompare(b.country);
     });
 
@@ -70,13 +68,11 @@ function update(selectedVar) {
 }
 
 
-// Function to create/update the legend
+
 function updateLegend() {
   console.log(colorScale.range())
-  // Remove existing legend items
   legendSvg.selectAll("*").remove();
 
-  // Append rectangles and text for updated legend items
   legendSvg.selectAll("rect")
     .data(colorScale.range())
     .enter()
