@@ -36,9 +36,9 @@
                 <i class="fa fa-bars"></i>
             </a>
             <a href="#home" class="w3-bar-item w3-button"><span class="glyphicon glyphicon-home"></span></a>
-            <a href="#viz" class="w3-bar-item w3-button">Visualization</a>
+            <a href="#backgroundInformation" class="w3-bar-item w3-button">Hintergrundinformation</a>
+            <a href="#viz" class="w3-bar-item w3-button">Visualisierung</a>
             <a href="#data" class="w3-bar-item w3-button">Datensatz</a>
-            <a href="#sketch" class="w3-bar-item w3-button">Skizze</a>
             <a href="#ref" class="w3-bar-item w3-button">References</a>
             <a href="#team" class="w3-bar-item w3-button">Team</a>
         </div>
@@ -49,6 +49,19 @@
             <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">IQ-MAP</span>
         </div>
     </div>
+
+    <div id="backgroundInformation" class="w3-content w3-center">
+        <h3 class="w3-center">Hintergrundinformation</h3>
+        <p class="text-center">
+            Die unten abgebildete Datenvisualisierung zeigt die globale Verteilung der durchschnittlichen Intelligenzquotienten (IQ) dar. Bei der interaktiven Karte können zusätzliche Informationen zu einem Land erhalten werden, wenn über ein Land gehovert wird. Dieses Land wird ebenso in dem danebenliegenden Bar-Chart beleuchtet. Über den beiden Charts sind verschiedene Buttons. Bei diesen Buttons können verschiedene Kategorien ausgewählt werden, welche die Charts anzeigen. <br>
+            Unter der Karte und der Bar-Chart sind zwei Scatterplots. Ein Plot zeigt die Relation zwischen dem durchschnittlichen Einkommen und der durchschnittlichen IQ’s einen Landes. Dabei ist zu erkennen, dass je höher der IQ ist, desto höher ist das durchschnittliche Einkommen. Neben diesem Chart ist ein Scatterplot, welcher die Relation zwischen dem durchschnittlichen Untergewicht in Prozent und dem durchschnittlichen IQ darstellt. Auch hier ist zu sehen, dass je höher das durchschnittliche Untergewicht, desto tiefer ist der IQ. Dies kann natürlich auch ein Zufall sein. Für genauere Resultate sollte tiefer nachgeforscht werden.
+
+        </p>
+        <h3 class="w3-center">Skizze</h3>
+        <img src="image/sketch.jpg" alt="sketch">
+    </div>
+
+
 
     <div id="viz">
         <h3 id="titleVisualization" class="w3-center">Visualization</h3>
@@ -65,10 +78,10 @@
 
         <div class="table-container w3-center">
             <div class="left-column">
-                    <svg id="iq_map" width="650" height="400"></svg>
-                    <svg id="iq_map_legend"></svg>
-                    <script src="js/map.js"></script>
-               
+                <svg id="iq_map" width="650" height="400"></svg>
+                <svg id="iq_map_legend"></svg>
+                <script src="js/map.js"></script>
+
             </div>
             <div class="right-column">
                 <svg id="barChart"></svg>
@@ -76,13 +89,13 @@
             </div>
         </div>
         <script src="js/script.js"></script>
-       <div class="table-container">
-        <div class="w3-content w3-container">
-            <div id="countryname">Japan</div>
-            <div id="dataviz_underweightbyCountry"></div>
-            <script src="js/scatterplot_Malnutrition.js"></script>
-        </div>
-       </div>
+        <!-- <div class="table-container">
+            <div class="w3-content w3-container">
+                <div id="countryname">Japan</div>
+                <div id="dataviz_underweightbyCountry"></div>
+                <script src="js/scatterplot_Malnutrition.js"></script>
+            </div>
+        </div> -->
     </div>
     <div class="table-container w3-center">
         <div class="left-column">
@@ -98,41 +111,38 @@
 
 
 
-    <div id="data">
+    <div class="w3-content w3-container" id="data" style="margin-top: 50px;">
         <h3 class="w3-center">Datensatz</h3>
-        <div class="table-container">
-            <div class="left-column">
-                <b>
-                    <h3>IQ-Level</h3>
-                </b>
-                <iframe src="data/IQ_level.json"></iframe>
+        <p >
+            Unsere IQ-Daten für diese Visualisierung stammen exklusiv von Kaggle. <br>
+            Beachten Sie, dass die CSV-Datei noch Anpassungen erfordert, um die gewünschten Ergebnisse zu erzielen. <br>
+            - Zuerst wurden die Ländernamen in der CSV-Datei angepasst, um sie mit den Ländernamen in der countries.geo.json-Datei abzugleichen (IQ_level.csv). <br>
+            - Anschließend wurden die Daten in der CSV-Datei mit einem Python-Skript bearbeitet. Dabei wurden die Spalten "Country", "Year" und "Value" in einer neuen CSV-Datei gespeichert (malnutrition.csv -> malnutrition_output.csv). <br>
+            - Zum Schluss erfolgte die Zusammenführung der Unterernährungsdaten mit den IQ-Daten (IQ_level.csv + malnutrition_output.csv = merge_output.csv). <br>
+        </p>
+        <div class="w3-center">
+            <div class="w3-center">
+                <h4>IQ-Level</h4>
+                <p> <b>IQ-Level</b>
+                    <a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv"
+                        download>IQ_level</a>
+                </p>
+                <h4>Unterernährung</h4>
+                <p> <b>Unterernährung Rohdaten</b>
+                    <a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/malnutrition.json"
+                        download>Unterernährung</a>
+                    <br>
+                    <b>Unterernährung Filter</b>
+                    <a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/malnutrition_output.csv"
+                        download>Unterernährung (Country, Year, Value)</a>
+                    <br>
+                    <b>IQ & Unterernährung Merge</b>
+                    <a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/merge_output.csv" download>IQ &
+                        Unterernährung</a>
+                </p>
             </div>
-            <div class="right-column">
-                <b>
-                    <h3>Unterernährung Rohdaten</h3>
-                </b>
-                <iframe src="data/malnutrition.json"></iframe>
-            </div>
-        </div>
-        <div class="table-container">
-            <div class="left-column">
-                <b>
-                    <h3>Unterernährung Filter</h3>
-                </b>
-                <!-- <iframe src="data/malnutrition_output.csv"></iframe> -->
-            </div>
-            <div class="right-column">
-                <b>
-                    <h3>IQ & Unterernährung Merge</h3>
-                </b>
-                <!-- <iframe src="data/merge_output.csv"></iframe> -->
-            </div>
-        </div>
-    </div>
 
-    <div id="sketch">
-        <h3 class="w3-center">Skizze</h3>
-        <img src="image/sketch.jpg" alt="sketch">
+        </div>
     </div>
 
     <div class="w3-content w3-container" id="ref">
@@ -147,11 +157,23 @@
     </div>
 
     <div class="w3-content w3-container" id="team">
-        <h3 class="w3-center">Team</h3>
+        <div class="w3-center">
+            <h3 class="w3-center">Team</h3>
         <p>
-            Benjamin Anthamatten, Vithursiya Vijayasingam
+            Benjamin Anthamatten <br>
+            Bsc in Informatik (I.BSCI.2101) <br>
+            Hochschule Luzern <br>
+            5.Semester <br>
         </p>
-    </div>
+        <p>
+            Vithursiya Vijayasingam <br>
+            Bsc in Informatik (I.BSCI.2101) <br>
+            Hochschule Luzern <br>
+            5.Semester <br>
+        </p>
+        </div>
+        
+    </div>    
 
 </body>
 
