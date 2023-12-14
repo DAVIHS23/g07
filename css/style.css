@@ -16,8 +16,13 @@ img {
   margin: 0 auto;
 }
 
+#titleVisualization{
+  margin-top: 50px;
+}
+
 .table-container {
   display: flex;
+  margin-top: 30px;
 }
 
 .left-column {
@@ -27,8 +32,8 @@ img {
 
 #iq_map,
 #iq_map_legend {
-  display: inline-block; /* Display them as inline-block elements */
-  vertical-align: top; /* Align them to the top to ensure they are properly positioned */
+  display: inline-block;
+  vertical-align: top; 
 }
 
 .right-column {
@@ -41,23 +46,6 @@ img {
   display: block;
 }
 
-
-/* .table-container {
-  display: flex;
-  height: 70vh;
-}
-
-.left-column,
-.right-column {
-  flex: 1;
-  overflow: hidden;
-}
-
-#barChart,
-#map{
-  width: 100vh;
-  height: 100vh;
-} */
 #dataviz_iqandavg{
   margin-left: 20px;
 }
