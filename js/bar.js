@@ -59,7 +59,7 @@ var svgBar = d3
     switch (selectedChoose) {
       case "IQ":
         nameOfInfo = "IQ";
-        valueOfInfo = d.rank;
+        valueOfInfo = d.IQ;
         break;
       case "education_expenditure":
         nameOfInfo = "Ausbildungskosten";

@@ -125,7 +125,7 @@ function ready(error, topo, IQLevelData) {
       switch (selectedChoose) {
         case "IQ":
           nameOfInfo = "IQ";
-          valueOfInfo = iqData.rank;
+          valueOfInfo = iqData.IQ;
           break;
         case "education_expenditure":
           nameOfInfo = "Ausbildungskosten";
@@ -230,12 +230,6 @@ function ready(error, topo, IQLevelData) {
     .style("opacity", 0.8)
     .on("mouseover", mouseOver)
     .on("mouseleave", mouseLeave);
-
-    // Create SVG for the legend
-
-// ... (your existing code)
-
-  
 }
 
 var tooltip = d3.select("body").append("div")
