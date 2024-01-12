@@ -209,7 +209,7 @@ function ready(error, topo, IQLevelData) {
     .attr("x", 40)
     .attr("y", function (d, i) { return 20 * i + 15; })
     .style("font-size", "12px")
-    .text(function (d) { return d; });
+    .text(function (d) { return d + " IQ"; });
 
   // Draw the map
   svg.append("g")

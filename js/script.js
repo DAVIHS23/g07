@@ -70,7 +70,23 @@ function update(selectedVar) {
 
 
 function updateLegend() {
-  console.log(colorScale.range())
+  let valueOfInfo = "undefined";
+
+  switch (selectedChoose) {
+    case "IQ":
+      valueOfInfo = " IQ";
+      break;
+    case "education_expenditure":
+      valueOfInfo = " $";
+      break;
+    case "avg_income":
+      valueOfInfo = " $";
+      break;
+    case "avg_temp":
+      valueOfInfo = " °C";
+      break;
+  }
+
   legendSvg.selectAll("*").remove();
 
   legendSvg.selectAll("rect")
@@ -90,5 +106,5 @@ function updateLegend() {
     .attr("x", 40)
     .attr("y", function (d, i) { return 20 * i + 15; })
     .style("font-size", "12px")
-    .text(function (d) { return d; });
+    .text(function (d) { return d + valueOfInfo; });
 }
