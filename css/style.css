@@ -17,7 +17,8 @@ img {
 }
 
 #titleVisualization, 
-#backgroundInformation{
+#backgroundInformation,
+#vizualizationConcept{
   margin-top: 50px;
 }
 
