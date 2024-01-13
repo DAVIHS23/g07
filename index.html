@@ -38,6 +38,7 @@
             <a href="#home" class="w3-bar-item w3-button"><span class="glyphicon glyphicon-home"></span></a>
             <a href="#backgroundInformation" class="w3-bar-item w3-button">Hintergrundinformation</a>
             <a href="#viz" class="w3-bar-item w3-button">Visualisierung</a>
+            <a href="#vizualizationConcept" class="w3-bar-item w3-button">Visual Design Choices</a>
             <a href="#data" class="w3-bar-item w3-button">Datensatz</a>
             <a href="#ref" class="w3-bar-item w3-button">References</a>
             <a href="#team" class="w3-bar-item w3-button">Team</a>
@@ -89,13 +90,13 @@
             </div>
         </div>
         <script src="js/script.js"></script>
-        <!-- <div class="table-container">
+        <div class="table-container">
             <div class="w3-content w3-container">
-                <div id="countryname">Japan</div>
+                <div id="countryname"></div>
                 <div id="dataviz_underweightbyCountry"></div>
                 <script src="js/scatterplot_Malnutrition.js"></script>
             </div>
-        </div> -->
+        </div>
     </div>
     <div class="table-container w3-center">
         <div class="left-column">
@@ -111,19 +112,35 @@
 
     <div id="vizualizationConcept" class="w3-content w3-center">
         <h3 class="w3-center">Visual Design Choices</h3>
-        <h4 class="w3-center">Grundlagen Visual Design</h4>
+        <h4 class="w3-center">Foundations Visual Design</h4>
         <p class="text-center"> 
-            blabla
+            Die Grundlage unserer Visualisierung bildet eine interaktive Karte, die die Möglichkeit bietet, verschiedene Kriterien nach Belieben zu filtern. Diese Karte bietet einen umfassenden Überblick über die Welt und die Verteilung der IQ-Werte sowie anderer relevanter Faktoren. Trotz ihrer informativen Darstellung ist es auf den ersten Blick jedoch nicht leicht zu erkennen, welche Länder die höchsten IQ-Werte aufweisen.
+            Aus diesem Grund haben wir uns entschieden, zusätzlich zu der interaktiven Karte einen Bar-Chart zu integrieren. Der Bar-Chart präsentiert die Top 20 Länder mit den höchsten IQ-Werten weltweit. Durch diese visuelle Ergänzung wird auf einen Blick ersichtlich, welche Länder die höchsten IQ-Werte aufweisen.
+            Die Verknüpfung zwischen der Karte und dem Bar-Chart ermöglicht eine intuitive Interaktion. Wenn ein Land auf der Karte ausgewählt wird, wird dieses Land im Bar-Chart hervorgehoben, wodurch eine präzise Analyse der entsprechenden IQ-Werte möglich ist.
+            Um die Frage nach den Standorten mit den höchsten IQ-Werten zu beantworten, haben wir bewusst die Kombination aus Karte und Bar-Chart gewählt.
+            Des Weiteren widmen wir uns der Frage, welche Kriterien einen Einfluss auf den IQ haben. Hierfür nutzen wir Scatterplots, die unterhalb der Karte und des Bar-Charts platziert sind. Die beiden Scatterplots zeigen die Beziehung zwischen dem durchschnittlichen Einkommen und den durchschnittlichen IQ-Werten eines Landes auf.
+            Diese visuellen Darstellungen erlauben es uns, Zusammenhänge und Muster zu erkennen und liefern somit wertvolle Erkenntnisse zu den Einflussfaktoren auf den IQ. Durch die klare Struktur unserer Visualisierung ermöglichen wir eine einfache und umfassende Beantwortung von unterschiedlichen Fragestellungen im Zusammenhang mit IQ-Werten und deren Einflussfaktoren.            
+
+            TODO: <br> 
+            tooltip
         </p>
         <h4 class="w3-center">Fundamental Principals of Analytical Design (Tufte)</h4>
         <p class="text-center"> 
-            blabla
+           <b>Die Interaktive Karte erfüllt das Prinzip der Kontextualisierung.</b> Sie bietet einen umfassenden Überblick über die Welt und die Verteilung der IQ-Werte. Durch die Möglichkeit, verschiedene Kriterien zu filtern, kann der Nutzer die Visualisierung an seine individuellen Bedürfnisse anpassen. <br>
+            <b>Der Bar-Chart erfüllt das Prinzip der Sichtbarkeit.</b> Er zeigt auf einen Blick, welche Länder die höchsten IQ-Werte aufweisen. Die Visualisierung ist klar und prägnant gestaltet, sodass die wichtigsten Informationen leicht zu erkennen sind. <br>
+            <b>Die Verknüpfung zwischen Karte und Bar-Chart erfüllt das Prinzip der Intuition.</b> Wenn ein Land auf der Karte ausgewählt wird, wird dieses Land im Bar-Chart hervorgehoben. Dadurch kann der Nutzer die entsprechenden IQ-Werte schnell und einfach vergleichen. <br>
+            <b>Die Scatterplots erfüllen das Prinzip der Klarheit.</b> Sie zeigen die Beziehung zwischen zwei Variablen auf, in diesem Fall dem durchschnittlichen Einkommen und den durchschnittlichen IQ-Werten eines Landes. Die Visualisierung ist einfach und verständlich gestaltet, sodass die Zusammenhänge leicht zu erkennen sind. <br>
         </p>
         <h4 class="w3-center">Data-Ink Ratio (Tufte)</h4>
         <p class="text-center"> 
-            blabla
+            Bei unsere Visualisierung haben wir darauf geachtet, dass die Daten-Ink Ratio möglichst hoch ist. Wir haben uns bewusst für eine minimalistische Gestaltung entschieden, um die wichtigsten Informationen hervorzuheben. Die Visualisierung ist klar und prägnant gestaltet, sodass die Daten-Ink Ratio hoch ist. <br>
+            Es wurde geachtet, dass bei einer Darstellung nur ein Information dargestellt wird. <br>
+            Mit der hilfe von Farben konnten wir die relevanten Daten und Informationen hervorheben. <br>
+            <ul>Weltkarte</ul>
+            <li>Farbe</li>
+            Mit der Farbe wird der IQ-Wert dargestellt. Je dunkler die Farbe, desto höher ist der IQ-Wert oder auch die andere gewählte Werte. <br>
         </p>
-        <h4 class="w3-center">Menschliche Wahrnehmung</h4>
+        <h4 class="w3-center">Human Perception</h4>
         <p class="text-center">
             Damit die Webseite den Nutzer bindet und ansprechend ist wurden mehrere Massnahmen umgesetzt.
             Es wurde ein passendes Titelbild ausgewählt, welches zu dem Thema IQ und zu den verwendeten Farben auf der Webseite passt. 
@@ -136,7 +153,7 @@
         <p class="text-center">
             blabla
         </p>
-        <h4 class="w3-center">Interaktionskonzept</h4>
+        <h4 class="w3-center">Interaction Concept</h4>
         <p class="text-center">
             Jedes Diagramm auf der Webseite ist Interaktive gestaltet. 
             Bei der interaktiven Karte können zusätzliche Informationen zu einem Land erhalten werden, wenn über ein Land gehovert wird. 
@@ -159,7 +176,7 @@
             Unsere IQ-Daten für diese Visualisierung stammen exklusiv von Kaggle. <br>
             Beachten Sie, dass die CSV-Datei noch Anpassungen erfordert, um die gewünschten Ergebnisse zu erzielen. <br>
             - Zuerst wurden die Ländernamen in der CSV-Datei angepasst, um sie mit den Ländernamen in der countries.geo.json-Datei abzugleichen (IQ_level.csv). <br>
-            - Anschließend wurden die Daten in der CSV-Datei mit einem Python-Skript bearbeitet. Dabei wurden die Spalten "Country", "Year" und "Value" in einer neuen CSV-Datei gespeichert (malnutrition.csv -> malnutrition_output.csv). <br>
+            - Anschliessend wurden die Daten in der CSV-Datei mit einem Python-Skript bearbeitet. Dabei wurden die Spalten "Country", "Year" und "Value" in einer neuen CSV-Datei gespeichert (malnutrition.csv -> malnutrition_output.csv). <br>
             - Zum Schluss erfolgte die Zusammenführung der Unterernährungsdaten mit den IQ-Daten (IQ_level.csv + malnutrition_output.csv = merge_output.csv). <br>
         </p>
         <div class="w3-center">
@@ -189,33 +206,44 @@
 
     <div class="w3-content w3-container" id="ref">
         <h3>References</h3>
-        <p>D3 Map<br />
-            https://d3-graph-gallery.com/graph/choropleth_hover_effect.html
+        <p><h4>HTML Vorlage</h4>
+            Für die Gestaltung unserer Webseite verwendeten wir <a href="https://elearning.hslu.ch/ilias/goto.php?target=file_6015673_download&client_id=hslu">die Vorlage</a> aus dem Modul DAVI_HS23 der Hochschule Luzern.
         </p>
-        <p>D3 Bar<br />
-            https://d3-graph-gallery.com/graph/barplot_horizontal.html
-            https://d3-graph-gallery.com/graph/barplot_button_data_csv.html
-        </p>
-    </div>
 
+        <p><h4>Codierung Unterstürtzung</h4>
+            Für allgemeine Codierung Frage haben wir uns an <a href="https://chat.openai.com/">ChatGPT</a> gewendet.<br>
+            Für die Design ausprobieren haben wir oder passenden Layout zufinden haben wir <a href="https://www.w3schools.com/">W3School</a>  benutzt <br>
+            Für eine einheitliche Design haben wir <a href="https://getbootstrap.com/">Bootstrap</a> benutzt. <br>
+        </p>
+
+        <p><h4>D3 Vorlagen</h4>
+            <p>
+                Für die Visualisierung haben wir D3 Vorlagen benutzt. <br>
+                <a href="https://d3-graph-gallery.com/graph/choropleth_hover_effect.html">D3 Map</a><br />
+                <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">D3 Bar Horizonztal</a><br /> 
+                <a href="https://d3-graph-gallery.com/graph/barplot_button_data_csv.html">D3 Bar Data csv</a> <br>
+                <a href="https://d3-graph-gallery.com/graph/interactivity_brush.html">D3 Scatterplot</a><br>
+            </p>
+        </p>
+       
+    </div>
+   
     <div class="w3-content w3-container" id="team">
         <div class="w3-center">
             <h3 class="w3-center">Team</h3>
-        <p>
-            Benjamin Anthamatten <br>
-            Bsc in Informatik (I.BSCI.2101) <br>
-            Hochschule Luzern <br>
-            5.Semester <br>
-        </p>
-        <p>
-            Vithursiya Vijayasingam <br>
-            Bsc in Informatik (I.BSCI.2101) <br>
-            Hochschule Luzern <br>
-            5.Semester <br>
-        </p>
+            <div style="display: flex; justify-content: space-around;">
+                <p> Benjamin Anthamatten <br>
+                    Bsc in Informatik (I.BSCI.2101) <br>
+                    Hochschule Luzern <br>
+                    5.Semester <br></p>
+                <p>Vithursiya Vijayasingam <br>
+                    Bsc in Informatik (I.BSCI.2101) <br>
+                    Hochschule Luzern <br>
+                    5.Semester <br></p>
+            </div>
         </div>
-        
-    </div>    
+    </div>
+    
 
 </body>
 
