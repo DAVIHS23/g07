@@ -1,151 +1,119 @@
-var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-  width = window.innerWidth - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+// Set up the chart dimensions
+var margin = { top: 10, right: 30, bottom: 30, left: 60 };
+var width = 700 - margin.left - margin.right;
+var height = 400 - margin.top - margin.bottom;
 
-var Svg = d3
-  .select("#dataviz_underweightbyCountry")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+// Append the SVG object to the body of the page
+var Svg = d3.select("#dataviz_underweightbyCountry")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv(
-  "https://raw.githubusercontent.com/DAVIHS23/g07/main/data/merge_output.csv",
-  function (data) {
-    var scatterData = data;
-
-    var x = d3.scaleLinear().range([0, width]);
-    var xAxis = Svg
-      .append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x).ticks(d3.timeYear.every(10)).tickFormat(d3.format("d")));
-
-    scatterData.forEach(function (d) {
-      d.Year = +d.Year;
-    });
-
-
-    x.domain([
-      d3.min(scatterData, function (d) { return +d.Year; }),
-      d3.max(scatterData, function (d) { return +d.Year; })
-    ]).nice();
-
-    var y = d3.scaleLinear().range([height, 0]);
-
-    y.domain([
-      d3.min(scatterData, function (d) { return +d.Value; }),
-      d3.max(scatterData, function (d) { return +d.Value; })
-    ]).nice();
-
-    Svg.append("g").call(d3.axisLeft(y));
-
-    var clip = Svg
-      .append("defs")
-      .append("svg:clipPath")
-      .attr("id", "clip")
-      .append("svg:rect")
-      .attr("width", width)
-      .attr("height", height)
-      .attr("x", 0)
-      .attr("y", 0);
-
-    var color = d3.scaleOrdinal().range(["#440154ff", "#21908dff", "#fde725ff"]);
-
-    var brush = d3.brushX()
-      .extent([[0, 0], [width, height]])
-      .on("end", updateChart);
-
-    var scatter = Svg.append('g')
-      .attr("clip-path", "url(#clip)");
-
-    Svg.append("g")
-      .attr("class", "brush")
-      .call(brush);
-
-    var idleTimeout;
-
-    function idled() {
-      idleTimeout = null;
-    }
-
-    function updateChart() {
-      extent = d3.event.selection;
-
-      if (!extent) {
-        if (!idleTimeout) return (idleTimeout = setTimeout(idled, 350));
-        x.domain([
-          d3.min(scatterData, function (d) { return +d.Year; }),
-          d3.max(scatterData, function (d) { return +d.Year; })
-        ]).nice();
-      } else {
-        x.domain([x.invert(extent[0]), x.invert(extent[1])]);
-        Svg.select(".brush").call(brush.move, null);
-      }
-
-      xAxis.call(d3.axisBottom(x).ticks(d3.timeYear.every(10)).tickFormat(d3.format("d")));
-
-      scatter
-        .selectAll("circle")
-        .attr("cx", function (d) {
-          return x(d.Year);
-        })
-        .attr("cy", function (d) {
-          return y(d.Value);
+// Function to update chart based on selected country
+function updateChart() {
+    // Read the data dynamically or based on user interaction
+    d3.csv("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/merge_output.csv", function (data) {
+        // var selectedCountry = document.getElementById("countryname").textContent;
+        var selectedCountry = "Brunei Darussalam";
+        
+        var countryData = data.filter(function (d) {
+            return d.Country === selectedCountry;
         });
-    }
 
-    var selectedCountry = "Japan";
-    updateScatterplotForCountry(selectedCountry);
+        // Extract unique values for X and Y axes
+        var xValues = countryData.map(function (d) { return +d.Year; });
+        var yValues = countryData.map(function (d) { return +d.Value; });
 
-    function updateScatterplotForCountry(country) {
-      var selectedCountryData = scatterData.filter(function (d) {
-        return d.Country === country;
-      });
+        // Update X and Y domains
+        var x = d3.scaleLinear().domain([d3.min(xValues), d3.max(xValues)]).range([0, width]);
+        var y = d3.scaleLinear().domain([d3.min(yValues), d3.max(yValues)]).range([height, 0]);
 
-      if (selectedCountryData.length > 0) {
-        x.domain(d3.extent(scatterData, function (d) {
-          return +d.Year;
-        })).nice();
+        // Add X axis
+        Svg.select(".x-axis").remove(); // Remove existing X axis to update
+        Svg.append("g")
+            .attr("class", "x-axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x).tickFormat(d3.format("d"))); // Format ticks as integers
 
-        y.domain(d3.extent(scatterData, function (d) {
-          return +d.Value;
-        })).nice();
+        // Add Y axis
+        Svg.select(".y-axis").remove(); // Remove existing Y axis to update
+        Svg.append("g")
+            .attr("class", "y-axis")
+            .call(d3.axisLeft(y).tickFormat(d3.format(".2f"))); // Format ticks as two decimal places
 
-        xAxis.transition().duration(1000).call(d3.axisBottom(x).ticks(d3.timeYear.every(10)).tickFormat(d3.format("d")));
+        // Add X Axis Label
+        Svg.select(".x-axis-label").remove(); // Remove existing X axis label to update
+        Svg.append("text")
+            .attr("class", "x-axis-label")
+            .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
+            .style("text-anchor", "middle")
+            .text("Year");
 
-        Svg.select("g.axisY").transition().duration(1000).call(d3.axisLeft(y));
+        // Add Y Axis Label
+        Svg.select(".y-axis-label").remove(); // Remove existing Y axis label to update
+        Svg.append("text")
+            .attr("class", "y-axis-label")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left)
+            .attr("x", 0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Value");
 
-        var scatterSelection = scatter.selectAll("circle").data(selectedCountryData);
+        // Add circles
+        var circles = Svg.selectAll("circle")
+            .data(countryData);
 
-        scatterSelection
-          .transition()
-          .duration(1000)
-          .attr("cx", function (d) {
-            return x(+d.Year);
-          })
-          .attr("cy", function (d) {
-            return y(+d.Value);
-          });
+        circles.exit().remove(); // Remove any extra circles if needed
 
-        scatterSelection
-          .enter()
-          .append("circle")
-          .attr("cx", function (d) {
-            return x(+d.Year);
-          })
-          .attr("cy", function (d) {
-            return y(+d.Value);
-          })
-          .attr("r", 8)
-          .style("fill", function (d) {
-            return color(d.Country);
-          });
+        circles.enter()
+            .append("circle")
+            .merge(circles) // Update existing circles
+            .attr("cx", function (d) { return x(+d.Year); })
+            .attr("cy", function (d) { return y(+d.Value); })
+            .attr("r", 8)
+            .style("fill", "blue")
+            .style("opacity", 0.5);
 
-        scatterSelection.exit().remove();
-      } else {
-        console.error("Daten für das ausgewählte Land nicht gefunden:", country);
-      }
-    }
-  }
-);
+        // Add brush
+        var brush = d3.brush()
+            .extent([[0, 0], [width, height]])
+            .on("end", brushended);
+
+        Svg.select(".brush").remove(); // Remove existing brush to update
+        Svg.append("g")
+            .attr("class", "brush")
+            .call(brush);
+
+        function brushended() {
+            var selection = d3.event.selection;
+            if (!selection) return; // Ignore empty selections
+
+            var [x0, y0] = selection[0];
+            var [x1, y1] = selection[1];
+
+            // Filter data based on the brush selection
+            var brushedData = countryData.filter(function (d) {
+                var cx = x(+d.Year);
+                var cy = y(+d.Value);
+                return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
+            });
+
+            // Update the scatterplot with the brushed data
+            updateScatterplot(brushedData);
+        }
+
+        function updateScatterplot(brushedData) {
+            // Update circles with the brushed data
+            circles.data(brushedData)
+                .transition().duration(1000)
+                .attr("cx", function (d) { return x(+d.Year); })
+                .attr("cy", function (d) { return y(+d.Value); });
+        }
+    });
+}
+
+// Initial chart setup
+updateChart();
