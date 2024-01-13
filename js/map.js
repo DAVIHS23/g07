@@ -4,6 +4,7 @@ var data2 = [...dataIQ_]
 var colorScale
 var legendSvg
 var legendColors
+var countryname
 var IQ_Domain = [50, 60, 70, 80, 90, 95, 100, 105]
 data.sort(function (a, b) {
   // Compare based on the selected property
@@ -55,7 +56,9 @@ function ready(error, topo, IQLevelData) {
       .style("stroke", "black");
 
     var iqData = IQLevelData.find((iq) => iq.country === d.properties.name);
-    console.log("asd")
+    countryname = iqData.country;
+    document.getElementById("countryname").innerText = countryname;
+
 
     // Remove highlighting from the corresponding bar in the bar chart
     var bar = svgBar.select(".myRect[data-country='" + d.properties.name + "']");
@@ -73,15 +76,12 @@ function ready(error, topo, IQLevelData) {
       
       var top20Data2 = data2.slice(0, 20);
       top20Data2.reverse();
-      console.log("data2", top20Data2)
       var isNotInTop20 = top20Data2.findIndex((item) => item.country === d.properties.name) === -1;
       var top = [...top20Data2];
 
       if (isNotInTop20) {
-        console.log("asd")
         // Replace the last country in the bar chart with the current country
-        top[0] = iqData
-        console.log(top20Data2)
+        top[0] = iqData;
 
         y.domain(top.map(function (d) { return d.country; }));
 

@@ -22,7 +22,6 @@ function update(selectedVar) {
         var maxValue = d3.max(data, d => +d[selectedVar]);
 
         var domainValues = d3.range(minValue , maxValue,Math.round((maxValue - minValue) / 8));
-        console.log(domainValues);
         if (selectedChoose == "IQ"){
           colorScale = d3.scaleThreshold()
             .domain(IQ_Domain)

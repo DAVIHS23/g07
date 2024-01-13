@@ -15,7 +15,6 @@ var combinedData = dataIQ_M.map(function(dIQ) {
     }
 }).filter(Boolean);
 
-console.log(combinedData)
 
 
  // Set up the chart dimensions
