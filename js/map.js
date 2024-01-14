@@ -56,8 +56,9 @@ function ready(error, topo, IQLevelData) {
       .style("stroke", "black");
 
     var iqData = IQLevelData.find((iq) => iq.country === d.properties.name);
-    countryname = iqData.country;
+    countryname = d.properties.name;
     document.getElementById("countryname").innerText = countryname;
+    updateScatterplot(countryname);
 
 
     // Remove highlighting from the corresponding bar in the bar chart

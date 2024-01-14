@@ -15,8 +15,8 @@ var Svg = d3.select("#dataviz_underweightbyCountry")
 function updateChart() {
     // Read the data dynamically or based on user interaction
     d3.csv("https://raw.githubusercontent.com/DAVIHS23/g07/main/data/merge_output.csv", function (data) {
-        // var selectedCountry = document.getElementById("countryname").textContent;
-        var selectedCountry = "Brunei Darussalam";
+        var selectedCountry = "Japan";
+        document.getElementById("countryname").innerText = selectedCountry;
         
         var countryData = data.filter(function (d) {
             return d.Country === selectedCountry;
