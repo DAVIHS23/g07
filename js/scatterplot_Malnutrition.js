@@ -40,7 +40,7 @@ function updateChart() {
             .attr("class", "x-axis-label")
             .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
             .style("text-anchor", "middle")
-            .text("Year");
+            .text("Jahr");
 
         Svg.select(".y-axis-label").remove();
         Svg.append("text")
@@ -50,7 +50,7 @@ function updateChart() {
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .style("text-anchor", "middle")
-            .text("Value");
+            .text("Untergewichtig");
 
         var circles = Svg.selectAll("circle")
             .data(countryData);

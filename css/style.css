@@ -9,11 +9,32 @@ body, html {
 .home{
     background-color: blue;
 }
+
+p{
+    font-size: 16px;
+}
+
 img {
   max-width: 100%; 
   height: auto;
   display: block;
   margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
 }
 
 #titleVisualization, 

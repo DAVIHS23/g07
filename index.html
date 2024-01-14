@@ -63,10 +63,7 @@
             Mit dieser Arbeit möchten wir der Frage nachgehen, ob es einen Zusammenhang zwischen dem IQ und anderen
             Faktoren gibt. <br>
             <b>Wir haben uns auf folgende Faktoren fokussiert: </b> <br>
-            Unterernährung<br>
-            Ausbildungskosten<br>
-            Einkommen<br>
-            Temperatur <br>
+            Unterernährung, Ausbildungskosten, Einkommen und Temperatur <br>
 
             Durch die Verwendung eines Dashboards beabsichtigen wir, die Daten zu visualisieren und die Frage zu klären,
             ob es
@@ -74,23 +71,32 @@
         </p>
 
         <h3 class="w3-center">Skizze</h3>
-        Die unten abgebildete Datenvisualisierung zeigt die globale Verteilung der durchschnittlichen
-        Intelligenzquotienten (IQ) dar. Bei der interaktiven Karte können zusätzliche Informationen zu einem Land
-        erhalten werden, indem über ein Land gehovert wird. Dieses Land wird ebenso in dem danebenliegenden Bar-Chart
-        beleuchtet. Über den beiden Charts befinden sich verschiedene Buttons, mit denen verschiedene Kategorien
-        ausgewählt werden können, um die Charts entsprechend anzupassen. Unterhalb der Karte und des Bar-Charts wird ein
-        Scatterplot angezeigt, der die Unterernährungswerte des ausgewählten Landes über einen Zeitraum darstellt. <br>
+        <p>
+            Die unten abgebildete Datenvisualisierung zeigt die globale Verteilung der durchschnittlichen
+            Intelligenzquotienten (IQ) dar. Bei der interaktiven Karte können zusätzliche Informationen zu einem Land
+            erhalten werden, indem über ein Land gehovert wird. Dieses Land wird ebenso in dem danebenliegenden
+            Bar-Chart
+            beleuchtet. Über den beiden Charts befinden sich verschiedene Buttons, mit denen verschiedene Kategorien
+            ausgewählt werden können, um die Charts entsprechend anzupassen. Unterhalb der Karte und des Bar-Charts wird
+            ein
+            Scatterplot angezeigt, der die Unterernährungswerte des ausgewählten Landes über einen Zeitraum darstellt.
+            <br>
 
-        Unter der Unterernährung Scatterplot sind zwei weitere Scatterplots platziert. Ein Plot zeigt die Beziehung
-        zwischen dem durchschnittlichen Einkommen und dem durchschnittlichen IQ eines Landes. Dabei wird deutlich, dass
-        höhere IQ-Werte mit einem höheren durchschnittlichen Einkommen korrelieren. Neben diesem Chart befindet sich ein
-        weiterer Scatterplot, der die Relation zwischen dem durchschnittlichen Untergewicht in Prozent und dem
-        durchschnittlichen IQ darstellt. Auch hier lässt sich erkennen, dass höheres durchschnittliches Untergewicht mit
-        niedrigeren IQ-Werten einhergehen kann. Es ist jedoch wichtig zu beachten, dass dies auch Zufall sein könnte.
-        Für genauere Ergebnisse sollten weiterführende Untersuchungen durchgeführt werden.
-        <br>
+            Unter der Unterernährung Scatterplot sind zwei weitere Scatterplots platziert. Ein Plot zeigt die Beziehung
+            zwischen dem durchschnittlichen Einkommen und dem durchschnittlichen IQ eines Landes. Dabei wird deutlich,
+            dass
+            höhere IQ-Werte mit einem höheren durchschnittlichen Einkommen korrelieren. Neben diesem Chart befindet sich
+            ein
+            weiterer Scatterplot, der die Relation zwischen dem durchschnittlichen Untergewicht in Prozent und dem
+            durchschnittlichen IQ darstellt. Auch hier lässt sich erkennen, dass höheres durchschnittliches Untergewicht
+            mit
+            niedrigeren IQ-Werten einhergehen kann. Es ist jedoch wichtig zu beachten, dass dies auch Zufall sein
+            könnte.
+            Für genauere Ergebnisse sollten weiterführende Untersuchungen durchgeführt werden.
+        </p>
         <img src="image/sketch.jpg" alt="sketch">
     </div>
+
 
     <div id="viz">
         <h3 id="titleVisualization" class="w3-center">Visualization</h3>
@@ -237,70 +243,124 @@
 
 
     <div class="w3-content w3-container" id="data" style="margin-top: 50px;">
-        <h3 class="w3-center">Datensatz</h3>
-        <p>
-            Unsere IQ-Daten für diese Visualisierung stammen von Kaggle. <br>
-            Beachten Sie, dass die CSV-Datei noch Anpassungen erfordert, um die gewünschten Ergebnisse zu erzielen. <br>
-            - Zuerst wurden die Ländernamen in der CSV-Datei angepasst, um sie mit den Ländernamen in der
-            countries.geo.json-Datei abzugleichen (IQ_level.csv). <br>
-            - Anschliessend wurden die Daten in der CSV-Datei mit einem Python-Skript bearbeitet. Dabei wurden die
-            Spalten "Country", "Year" und "Value" in einer neuen CSV-Datei gespeichert (malnutrition.csv ->
-            malnutrition_output.csv). <br>
-            - Zum Schluss erfolgte die Zusammenführung der Unterernährungsdaten mit den IQ-Daten (IQ_level.csv +
-            malnutrition_output.csv = merge_output.csv). <br>
-        </p>
         <div class="w3-center">
-            <div class="w3-center">
-                <h4>IQ-Level</h4>
-                <p> <b>IQ-Level</b>
-                    <a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv"
-                        download>IQ_level</a>
-                </p>
-                <h4>Unterernährung</h4>
-                <p> <b>Unterernährung Rohdaten</b>
-                    <a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/malnutrition.json"
-                        download>Unterernährung</a>
-                    <br>
-                    <b>Unterernährung Filter</b>
-                    <a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/malnutrition_output.csv"
-                        download>Unterernährung (Country, Year, Value)</a>
-                    <br>
-                    <b>IQ & Unterernährung Merge</b>
-                    <a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/merge_output.csv" download>IQ &
-                        Unterernährung</a>
-                </p>
-            </div>
+            <h3 class="w3-center">Datensatz</h3>
+            <p>
+                Unsere IQ-Daten für diese Visualisierung stammen von Kaggle. <br>
+                Ursprünglich hatten wir geplant, nur IQ-Daten zu verwenden, aber wir haben uns entschieden, auch Daten
+                zur
+                Unterernährung hinzuzufügen. <br>
+
+            <h4>IQ-Level</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Daten</th>
+                        <th>Quelle</th>
+                        <th>Anwendung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/IQ_level.csv"
+                                download>IQ_level</a></td>
+                        <td><a href="https://www.kaggle.com/datasets/abhijitdahatonde/worldwide-average-iq-levels"
+                                download>Worldwide Average IQ Levels</a></td>
+                        <td>Map, Scatterplot Average Income & IQ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Unterernährung</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Daten</th>
+                        <th>Quelle</th>
+                        <th>Anwendung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/malnutrition.json"
+                                download>Unterernährung Rohdaten</a></td>
+                        <td><a href="https://www.kaggle.com/datasets/ruchi798/malnutrition-across-the-globe?resource=download"
+                                download>Malnutrition across the globe</a></td>
+                        <td>Scatterplot Underweight & IQ</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/malnutrition.csv"
+                                download>Unterernährung</a></td>
+                        <td><a href="blob:https://open-innovations.github.io/9c8471fa-7eba-43d3-8104-2aae4be9a148">Malnutrition
+                                Global</a></td>
+                        <td>Scatterplot Underweight by Country</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/malnutrition_output.csv"
+                                download>Unterernährung Filter</a></td>
+                        <td>Unterernährung (Country, Year, Value)</td>
+                        <td>Scatterplot Underweight by Country</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://raw.githubusercontent.com/DAVIHS23/g07/main/data/merge_output.csv"
+                                download>IQ
+                                & Unterernährung Merge</a></td>
+                        <td>IQ & Unterernährung</td>
+                        <td>Scatterplot Underweight by Country</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <p>
+                Beachten Sie, dass die CSV-Datei noch Anpassungen erfordert, um die gewünschten Ergebnisse zu erzielen.
+                <br>
+                - Zuerst wurden die Ländernamen in der CSV-Datei angepasst, um sie mit den Ländernamen in der
+                countries.geo.json-Datei abzugleichen (IQ_level.csv). <br>
+                - Anschliessend wurden die Daten in der CSV-Datei mit einem Python-Skript bearbeitet. Dabei wurden die
+                Spalten "Country", "Year" und "Value" in einer neuen CSV-Datei gespeichert (malnutrition.csv ->
+                malnutrition_output.csv). <br>
+                - Zum Schluss erfolgte die Zusammenführung der Unterernährungsdaten mit den IQ-Daten (IQ_level.csv +
+                malnutrition_output.csv = merge_output.csv). <br>
+
+                Um diese Anpassungen vorzunehmen, wurden Python-Skripte verwendet. Die Skripte finden Sie im
+                "scripts"-Ordner im
+                Projekt. <br>
+            </p>
 
         </div>
+
+
+        </p>
     </div>
 
     <div class="w3-content w3-container" id="ref">
-        <h3>References</h3>
-        <p>
-        <h4>HTML Vorlage</h4>
-        Für die Gestaltung unserer Webseite verwendeten wir <a
-            href="https://elearning.hslu.ch/ilias/goto.php?target=file_6015673_download&client_id=hslu">die Vorlage</a>
-        aus dem Modul DAVI_HS23 der Hochschule Luzern.
-        </p>
+        <div class="w3-center">
+            <h3 class="w3-ce">References</h3>
+            <p>
+            <h4>HTML Vorlage</h4>
+            Für das Design unserer Website haben wir <a
+                href="https://elearning.hslu.ch/ilias/goto.php?target=file_6015673_download&client_id=hslu">die
+                Vorlage</a> aus dem DAVI_HS23-Modul der Hochschule Luzern verwendet.
+            </p>
 
-        <p>
-        <h4>Codierung Unterstürtzung</h4>
-        Für allgemeine Codierung Frage haben wir uns an <a href="https://chat.openai.com/">ChatGPT</a> gewendet.<br>
-        Für die Design ausprobieren haben wir oder passenden Layout zufinden haben wir <a
-            href="https://www.w3schools.com/">W3School</a> benutzt <br>
-        Für eine einheitliche Design haben wir <a href="https://getbootstrap.com/">Bootstrap</a> benutzt. <br>
-        </p>
+            <p>
+            <h4>Codierung Unterstürtzung</h4>
+            Für allgemeine Codierung Frage haben wir uns an <a href="https://chat.openai.com/">ChatGPT</a> gewendet.<br>
+            Für die Design ausprobieren haben wir oder passenden Layout zufinden haben wir <a
+                href="https://www.w3schools.com/">W3School</a> benutzt <br>
+            Für eine einheitliche Design haben wir <a href="https://getbootstrap.com/">Bootstrap</a> benutzt. <br>
+            </p>
 
-        <p>
-        <h4>D3 Vorlagen</h4>
-        <p>
-            Für die Visualisierung haben wir D3 Vorlagen benutzt. <br>
-            <a href="https://d3-graph-gallery.com/graph/choropleth_hover_effect.html">D3 Map</a><br />
-            <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">D3 Bar Horizonztal</a><br />
-            <a href="https://d3-graph-gallery.com/graph/barplot_button_data_csv.html">D3 Bar Data csv</a> <br>
-            <a href="https://d3-graph-gallery.com/graph/interactivity_brush.html">D3 Scatterplot</a><br>
-        </p>
-        </p>
+            <h4>D3 Vorlagen</h4>
+            <p>
+                Für die Visualisierung haben wir D3 Vorlagen benutzt. <br>
+                <a href="https://d3-graph-gallery.com/graph/choropleth_hover_effect.html">D3 Map</a><br />
+                <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">D3 Bar Horizonztal</a><br />
+                <a href="https://d3-graph-gallery.com/graph/barplot_button_data_csv.html">D3 Bar Data csv</a> <br>
+                <a href="https://d3-graph-gallery.com/graph/interactivity_brush.html">D3 Scatterplot</a><br>
+            </p>
+        </div>
+
 
     </div>
 
@@ -308,17 +368,34 @@
         <div class="w3-center">
             <h3 class="w3-center">Team</h3>
             <div style="display: flex; justify-content: space-around;">
-                <p> Benjamin Anthamatten <br>
-                    Bsc in Informatik (I.BSCI.2101) <br>
-                    Hochschule Luzern <br>
-                    5.Semester <br></p>
-                <p>Vithursiya Vijayasingam <br>
-                    Bsc in Informatik (I.BSCI.2101) <br>
-                    Hochschule Luzern <br>
-                    5.Semester <br></p>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="image/BenjaminAnthamatten.jpg" alt="Benjamin Anthamatten">
+                    <br>
+                    <p>
+                        Benjamin Anthamatten <br>
+                        Bsc in Informatik (I.BSCI.2101) <br>
+                        Hochschule Luzern <br>
+                        5.Semester <br>
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="image/VithursiyaVijayasingam.jpg" alt="Vithursiya Vijayasingam">
+                    <br>
+                    <p>Vithursiya Vijayasingam <br>
+                        Bsc in Informatik (I.BSCI.2101) <br>
+                        Hochschule Luzern <br>
+                        5.Semester <br>
+                    </p>
+                </div>
+
             </div>
         </div>
     </div>
+
+
+
 
 
 </body>
