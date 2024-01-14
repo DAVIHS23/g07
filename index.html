@@ -54,15 +54,43 @@
     <div id="backgroundInformation" class="w3-content w3-center">
         <h3 class="w3-center">Hintergrundinformation</h3>
         <p class="text-center">
-            Die unten abgebildete Datenvisualisierung zeigt die globale Verteilung der durchschnittlichen Intelligenzquotienten (IQ) dar. Bei der interaktiven Karte können zusätzliche Informationen zu einem Land erhalten werden, wenn über ein Land gehovert wird. Dieses Land wird ebenso in dem danebenliegenden Bar-Chart beleuchtet. Über den beiden Charts sind verschiedene Buttons. Bei diesen Buttons können verschiedene Kategorien ausgewählt werden, welche die Charts anzeigen. <br>
-            Unter der Karte und der Bar-Chart sind zwei Scatterplots. Ein Plot zeigt die Relation zwischen dem durchschnittlichen Einkommen und der durchschnittlichen IQ’s einen Landes. Dabei ist zu erkennen, dass je höher der IQ ist, desto höher ist das durchschnittliche Einkommen. Neben diesem Chart ist ein Scatterplot, welcher die Relation zwischen dem durchschnittlichen Untergewicht in Prozent und dem durchschnittlichen IQ darstellt. Auch hier ist zu sehen, dass je höher das durchschnittliche Untergewicht, desto tiefer ist der IQ. Dies kann natürlich auch ein Zufall sein. Für genauere Resultate sollte tiefer nachgeforscht werden.
+            Intelligenz ist ein äusserst komplexes Thema mit verschiedenen Definitionen und Ansichten darüber, was
+            Intelligenz
+            eigentlich ist. <br>
+            Diese Fähigkeit setzt sich aus verschiedenen Faktoren zusammen und manifestiert sich in unterschiedlichen
+            Bereichen. <br>
 
+            Mit dieser Arbeit möchten wir der Frage nachgehen, ob es einen Zusammenhang zwischen dem IQ und anderen
+            Faktoren gibt. <br>
+            <b>Wir haben uns auf folgende Faktoren fokussiert: </b> <br>
+            Unterernährung<br>
+            Ausbildungskosten<br>
+            Einkommen<br>
+            Temperatur <br>
+
+            Durch die Verwendung eines Dashboards beabsichtigen wir, die Daten zu visualisieren und die Frage zu klären,
+            ob es
+            einen Zusammenhang zwischen dem IQ und den genannten Faktoren gibt. <br>
         </p>
+
         <h3 class="w3-center">Skizze</h3>
+        Die unten abgebildete Datenvisualisierung zeigt die globale Verteilung der durchschnittlichen
+        Intelligenzquotienten (IQ) dar. Bei der interaktiven Karte können zusätzliche Informationen zu einem Land
+        erhalten werden, indem über ein Land gehovert wird. Dieses Land wird ebenso in dem danebenliegenden Bar-Chart
+        beleuchtet. Über den beiden Charts befinden sich verschiedene Buttons, mit denen verschiedene Kategorien
+        ausgewählt werden können, um die Charts entsprechend anzupassen. Unterhalb der Karte und des Bar-Charts wird ein
+        Scatterplot angezeigt, der die Unterernährungswerte des ausgewählten Landes über einen Zeitraum darstellt. <br>
+
+        Unter der Unterernährung Scatterplot sind zwei weitere Scatterplots platziert. Ein Plot zeigt die Beziehung
+        zwischen dem durchschnittlichen Einkommen und dem durchschnittlichen IQ eines Landes. Dabei wird deutlich, dass
+        höhere IQ-Werte mit einem höheren durchschnittlichen Einkommen korrelieren. Neben diesem Chart befindet sich ein
+        weiterer Scatterplot, der die Relation zwischen dem durchschnittlichen Untergewicht in Prozent und dem
+        durchschnittlichen IQ darstellt. Auch hier lässt sich erkennen, dass höheres durchschnittliches Untergewicht mit
+        niedrigeren IQ-Werten einhergehen kann. Es ist jedoch wichtig zu beachten, dass dies auch Zufall sein könnte.
+        Für genauere Ergebnisse sollten weiterführende Untersuchungen durchgeführt werden.
+        <br>
         <img src="image/sketch.jpg" alt="sketch">
     </div>
-
-
 
     <div id="viz">
         <h3 id="titleVisualization" class="w3-center">Visualization</h3>
@@ -74,7 +102,6 @@
                 onclick="update('avg_income')">Einkommen</button>
             <button type="button" class="btn btn-light" id="temp-button"
                 onclick="update('avg_temp')">Temperatur</button>
-            <!-- <button type="button" class="btn btn-light" id="malnutrition-button" onclick="update('malnutrition')" disabled= yes>Unterernährung</button> -->
         </div>
 
         <div class="table-container w3-center">
@@ -114,71 +141,113 @@
     <div id="vizualizationConcept" class="w3-content w3-center">
         <h3 class="w3-center">Visual Design Choices</h3>
         <h4 class="w3-center">Foundations Visual Design</h4>
-        <p class="text-center"> 
-            Die Grundlage unserer Visualisierung bildet eine interaktive Karte, die die Möglichkeit bietet, verschiedene Kriterien nach Belieben zu filtern. Diese Karte bietet einen umfassenden Überblick über die Welt und die Verteilung der IQ-Werte sowie anderer relevanter Faktoren. Trotz ihrer informativen Darstellung ist es auf den ersten Blick jedoch nicht leicht zu erkennen, welche Länder die höchsten IQ-Werte aufweisen.
-            Aus diesem Grund haben wir uns entschieden, zusätzlich zu der interaktiven Karte einen Bar-Chart zu integrieren. Der Bar-Chart präsentiert die Top 20 Länder mit den höchsten IQ-Werten weltweit. Durch diese visuelle Ergänzung wird auf einen Blick ersichtlich, welche Länder die höchsten IQ-Werte aufweisen.
-            Die Verknüpfung zwischen der Karte und dem Bar-Chart ermöglicht eine intuitive Interaktion. Wenn ein Land auf der Karte ausgewählt wird, wird dieses Land im Bar-Chart hervorgehoben, wodurch eine präzise Analyse der entsprechenden IQ-Werte möglich ist.
-            Um die Frage nach den Standorten mit den höchsten IQ-Werten zu beantworten, haben wir bewusst die Kombination aus Karte und Bar-Chart gewählt.
-            Des Weiteren widmen wir uns der Frage, welche Kriterien einen Einfluss auf den IQ haben. Hierfür nutzen wir Scatterplots, die unterhalb der Karte und des Bar-Charts platziert sind. Die beiden Scatterplots zeigen die Beziehung zwischen dem durchschnittlichen Einkommen und den durchschnittlichen IQ-Werten eines Landes auf.
-            Diese visuellen Darstellungen erlauben es uns, Zusammenhänge und Muster zu erkennen und liefern somit wertvolle Erkenntnisse zu den Einflussfaktoren auf den IQ. Durch die klare Struktur unserer Visualisierung ermöglichen wir eine einfache und umfassende Beantwortung von unterschiedlichen Fragestellungen im Zusammenhang mit IQ-Werten und deren Einflussfaktoren.            
+        <p class="text-center">
+            Unsere Visualisierung besteht aus einem Dashboard, das eine interaktive Karte, ein Bar-Chart und drei
+            Scatterplots umfasst. <br>
+            Das Herzstück der Visualisierung bildet die interaktive Karte, die die weltweite Verteilung der IQ-Werte
+            darstellt. Die Farbgebung der Karte repräsentiert die IQ-Werte, wobei dunklere Farben höhere IQ-Werte
+            anzeigen. <br>
+            Diese Karte ist das Zentrum, das mit weiteren Diagrammen verknüpft ist, um die Daten übersichtlicher und
+            aussagekräftiger darzustellen. <br>
+            Die Bar-Chart präsentiert die Top 20 Länder mit den höchsten IQ-Werten weltweit oder nach ausgewählten
+            Kriterien. Dies ermöglicht einen schnellen Überblick darüber, welche Länder die höchsten Werte in Bezug auf
+            die spezifischen Kriterien aufweisen. <br>
+            Der Scatterplot unterstützt das Verständnis der Beziehung zwischen zwei Variablen, indem er die Zahlen in
+            einem Diagramm darstellt, was die Zusammenhänge nachvollziehbar macht. <br>
 
-            TODO: <br> 
-            tooltip
+            Durch die oben dargestellten Buttons ist es möglich, die Daten nach verschiedenen Kriterien zu filtern. Dies
+            bietet eine dynamische Möglichkeit, die Visualisierung an individuelle Bedürfnisse anzupassen und
+            spezifische Aspekte genauer zu betrachten. <br>
+
+            Beim hovern über ein Land auf der Karte wird ein Tooltip angezeigt, der Informationen zum Land sowie zum
+            entsprechenden IQ-Wert liefert. <br>
         </p>
-        <h4 class="w3-center">Fundamental Principals of Analytical Design (Tufte)</h4>
-        <p class="text-center"> 
-           <b>Die Interaktive Karte erfüllt das Prinzip der Kontextualisierung.</b> Sie bietet einen umfassenden Überblick über die Welt und die Verteilung der IQ-Werte. Durch die Möglichkeit, verschiedene Kriterien zu filtern, kann der Nutzer die Visualisierung an seine individuellen Bedürfnisse anpassen. <br>
-            <b>Der Bar-Chart erfüllt das Prinzip der Sichtbarkeit.</b> Er zeigt auf einen Blick, welche Länder die höchsten IQ-Werte aufweisen. Die Visualisierung ist klar und prägnant gestaltet, sodass die wichtigsten Informationen leicht zu erkennen sind. <br>
-            <b>Die Verknüpfung zwischen Karte und Bar-Chart erfüllt das Prinzip der Intuition.</b> Wenn ein Land auf der Karte ausgewählt wird, wird dieses Land im Bar-Chart hervorgehoben. Dadurch kann der Nutzer die entsprechenden IQ-Werte schnell und einfach vergleichen. <br>
-            <b>Die Scatterplots erfüllen das Prinzip der Klarheit.</b> Sie zeigen die Beziehung zwischen zwei Variablen auf, in diesem Fall dem durchschnittlichen Einkommen und den durchschnittlichen IQ-Werten eines Landes. Die Visualisierung ist einfach und verständlich gestaltet, sodass die Zusammenhänge leicht zu erkennen sind. <br>
+        <br>
+
+        <h4 class="w3-center">Fundamental Principles of Analytical Design (Tufte)</h4>
+        <p class="text-center">
+            <b>Kontextualisierung</b> <br> Die interaktive Karte bietet einen umfassenden Überblick über die Welt und
+            die Verteilung der IQ-Werte. Durch die Möglichkeit, verschiedene Kriterien zu filtern, kann der Nutzer die
+            Visualisierung an seine individuellen Bedürfnisse anpassen. <br>
+            <b>Sichtbarkeit</b> <br> Der Bar-Chart zeigt auf einen Blick, welche Länder die höchsten IQ-Werte aufweisen.
+            Die Visualisierung ist klar und prägnant gestaltet, sodass die wichtigsten Informationen leicht zu erkennen
+            sind. <br>
+            <b>Intuition</b> <br> Die Verknüpfung zwischen Karte, Bar-Chart und Scatterplot bietet Intuition. Wenn ein
+            Land auf der Karte ausgewählt wird, wird dieses Land im Bar-Chart hervorgehoben und auf dem Scatterplot
+            angezeigt. Dadurch kann der Nutzer die entsprechenden IQ-Werte schnell und einfach vergleichen. <br>
+            <b>Klarheit</b> <br> Die Scatterplots zeigen die Beziehung zwischen zwei Variablen auf. Die Visualisierung
+            ist einfach und verständlich gestaltet, sodass die Zusammenhänge leicht zu erkennen sind. <br>
         </p>
+
+        <br>
         <h4 class="w3-center">Data-Ink Ratio (Tufte)</h4>
-        <p class="text-center"> 
-            Bei unsere Visualisierung haben wir darauf geachtet, dass die Daten-Ink Ratio möglichst hoch ist. Wir haben uns bewusst für eine minimalistische Gestaltung entschieden, um die wichtigsten Informationen hervorzuheben. Die Visualisierung ist klar und prägnant gestaltet, sodass die Daten-Ink Ratio hoch ist. <br>
-            Es wurde geachtet, dass bei einer Darstellung nur ein Information dargestellt wird. <br>
-            Mit der hilfe von Farben konnten wir die relevanten Daten und Informationen hervorheben. <br>
-            <ul>Weltkarte</ul>
-            <li>Farbe</li>
-            Mit der Farbe wird der IQ-Wert dargestellt. Je dunkler die Farbe, desto höher ist der IQ-Wert oder auch die andere gewählte Werte. <br>
+        <p class="text-center">
+            Bei unserer Visualisierung haben wir darauf geachtet, dass die Data-Ink Ratio möglichst hoch ist. Wir haben
+            uns bewusst für eine minimalistische Gestaltung entschieden, um die wichtigsten Informationen hervorzuheben.
+            Die Visualisierung ist klar und prägnant gestaltet, sodass die Data-Ink Ratio hoch ist. <br>
+            Es wurde darauf geachtet, dass bei jeder Darstellung nur eine Information dargestellt wird. <br>
+            Mithilfe von Farben konnten wir relevante Daten und Informationen hervorheben. <br>
+
+            <b>Weltkarte</b>
+            Die Farbe repräsentiert den IQ-Wert. Je dunkler die Farbe, desto höher ist der IQ-Wert oder auch andere
+            ausgewählte Werte.
+
         </p>
+
+
+        <br>
         <h4 class="w3-center">Human Perception</h4>
         <p class="text-center">
             Damit die Webseite den Nutzer bindet und ansprechend ist wurden mehrere Massnahmen umgesetzt.
-            Es wurde ein passendes Titelbild ausgewählt, welches zu dem Thema IQ und zu den verwendeten Farben auf der Webseite passt. 
-            Das interessanteste Chart, die Map, wurde bewusst oben rechts platziert, da die Benutzer normalerweise die Webseite 
+            Es wurde ein passendes Titelbild ausgewählt, welches zu dem Thema IQ und zu den verwendeten Farben auf der
+            Webseite passt.
+            Das interessanteste Chart, die Map, wurde bewusst oben rechts platziert, da die Benutzer normalerweise die
+            Webseite
             von oben nach unten und von rechts nach links anschauen.
-            Die Map und der Bar Chart wurden ebenfalls bewusst nebeneinander platziert, da diese mit Linking verknüpft sind. 
+            Die Map und der Bar Chart wurden ebenfalls bewusst nebeneinander platziert, da diese mit Linking verknüpft
+            sind.
             Die Scatterplots werden gruppiert nebeneinander dargestellt.
         </p>
+
+        <br>
         <h4 class="w3-center">Tasks in Data Visualization</h4>
         <p class="text-center">
             blabla
         </p>
+
+        <br>
         <h4 class="w3-center">Interaction Concept</h4>
         <p class="text-center">
-            Jedes Diagramm auf der Webseite ist Interaktive gestaltet. 
-            Bei der interaktiven Karte können zusätzliche Informationen zu einem Land erhalten werden, wenn über ein Land gehovert wird. 
-            Dieses Land wird hervorgehebt von den anderen und in dem danebenliegenden Bar-Chart beleuchtet. 
-            Der Bar Chart zeigt die besten 20 Ländern auf der Welt an. 
-            Wenn auf der Karte ein Land ausgewählt wird, welches nicht in den besten 20 Ländern ist, wird das letzte Land im Bar Chart durch das ausgewählte ersetzt.
-            Wenn in dem Bar Chart auf ein Land gehovert wird, wird dies im Bar Chart wie auch in der Map hervorgehebt. 
-            Über den beiden Charts sind verschiedene Buttons. Bei diesen Buttons können verschiedene Kategorien ausgewählt werden, welche die Charts anzeigen und aktualisieren.
-            Unter der Karte und der Bar-Chart sind zwei Scatterplotts. 
-            Bei diesen kann hineingezoomt werden, um eine bessere Übersicht zu erlangen und es können nähere Informationen erlangt werden.
+            Jedes Diagramm auf der Webseite ist Interaktive gestaltet.
+            Bei der interaktiven Karte können zusätzliche Informationen zu einem Land erhalten werden, wenn über ein
+            Land gehovert wird.
+            Dieses Land wird hervorgehebt von den anderen und in dem danebenliegenden Bar-Chart beleuchtet.
+            Der Bar Chart zeigt die besten 20 Ländern auf der Welt an.
+            Wenn auf der Karte ein Land ausgewählt wird, welches nicht in den besten 20 Ländern ist, wird das letzte
+            Land im Bar Chart durch das ausgewählte ersetzt.
+            Wenn in dem Bar Chart auf ein Land gehovert wird, wird dies im Bar Chart wie auch in der Map hervorgehebt.
+            Über den beiden Charts sind verschiedene Buttons. Bei diesen Buttons können verschiedene Kategorien
+            ausgewählt werden, welche die Charts anzeigen und aktualisieren.
+            Unter der Karte und der Bar-Chart sind zwei Scatterplotts.
+            Bei diesen kann hineingezoomt werden, um eine bessere Übersicht zu erlangen und es können nähere
+            Informationen erlangt werden.
             Wenn über ein Kreis gehovert wird, wird das entsprechende Land angezeigt.
         </p>
     </div>
 
 
-
     <div class="w3-content w3-container" id="data" style="margin-top: 50px;">
         <h3 class="w3-center">Datensatz</h3>
-        <p >
-            Unsere IQ-Daten für diese Visualisierung stammen exklusiv von Kaggle. <br>
+        <p>
+            Unsere IQ-Daten für diese Visualisierung stammen von Kaggle. <br>
             Beachten Sie, dass die CSV-Datei noch Anpassungen erfordert, um die gewünschten Ergebnisse zu erzielen. <br>
-            - Zuerst wurden die Ländernamen in der CSV-Datei angepasst, um sie mit den Ländernamen in der countries.geo.json-Datei abzugleichen (IQ_level.csv). <br>
-            - Anschliessend wurden die Daten in der CSV-Datei mit einem Python-Skript bearbeitet. Dabei wurden die Spalten "Country", "Year" und "Value" in einer neuen CSV-Datei gespeichert (malnutrition.csv -> malnutrition_output.csv). <br>
-            - Zum Schluss erfolgte die Zusammenführung der Unterernährungsdaten mit den IQ-Daten (IQ_level.csv + malnutrition_output.csv = merge_output.csv). <br>
+            - Zuerst wurden die Ländernamen in der CSV-Datei angepasst, um sie mit den Ländernamen in der
+            countries.geo.json-Datei abzugleichen (IQ_level.csv). <br>
+            - Anschliessend wurden die Daten in der CSV-Datei mit einem Python-Skript bearbeitet. Dabei wurden die
+            Spalten "Country", "Year" und "Value" in einer neuen CSV-Datei gespeichert (malnutrition.csv ->
+            malnutrition_output.csv). <br>
+            - Zum Schluss erfolgte die Zusammenführung der Unterernährungsdaten mit den IQ-Daten (IQ_level.csv +
+            malnutrition_output.csv = merge_output.csv). <br>
         </p>
         <div class="w3-center">
             <div class="w3-center">
@@ -207,28 +276,34 @@
 
     <div class="w3-content w3-container" id="ref">
         <h3>References</h3>
-        <p><h4>HTML Vorlage</h4>
-            Für die Gestaltung unserer Webseite verwendeten wir <a href="https://elearning.hslu.ch/ilias/goto.php?target=file_6015673_download&client_id=hslu">die Vorlage</a> aus dem Modul DAVI_HS23 der Hochschule Luzern.
+        <p>
+        <h4>HTML Vorlage</h4>
+        Für die Gestaltung unserer Webseite verwendeten wir <a
+            href="https://elearning.hslu.ch/ilias/goto.php?target=file_6015673_download&client_id=hslu">die Vorlage</a>
+        aus dem Modul DAVI_HS23 der Hochschule Luzern.
         </p>
 
-        <p><h4>Codierung Unterstürtzung</h4>
-            Für allgemeine Codierung Frage haben wir uns an <a href="https://chat.openai.com/">ChatGPT</a> gewendet.<br>
-            Für die Design ausprobieren haben wir oder passenden Layout zufinden haben wir <a href="https://www.w3schools.com/">W3School</a>  benutzt <br>
-            Für eine einheitliche Design haben wir <a href="https://getbootstrap.com/">Bootstrap</a> benutzt. <br>
+        <p>
+        <h4>Codierung Unterstürtzung</h4>
+        Für allgemeine Codierung Frage haben wir uns an <a href="https://chat.openai.com/">ChatGPT</a> gewendet.<br>
+        Für die Design ausprobieren haben wir oder passenden Layout zufinden haben wir <a
+            href="https://www.w3schools.com/">W3School</a> benutzt <br>
+        Für eine einheitliche Design haben wir <a href="https://getbootstrap.com/">Bootstrap</a> benutzt. <br>
         </p>
 
-        <p><h4>D3 Vorlagen</h4>
-            <p>
-                Für die Visualisierung haben wir D3 Vorlagen benutzt. <br>
-                <a href="https://d3-graph-gallery.com/graph/choropleth_hover_effect.html">D3 Map</a><br />
-                <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">D3 Bar Horizonztal</a><br /> 
-                <a href="https://d3-graph-gallery.com/graph/barplot_button_data_csv.html">D3 Bar Data csv</a> <br>
-                <a href="https://d3-graph-gallery.com/graph/interactivity_brush.html">D3 Scatterplot</a><br>
-            </p>
+        <p>
+        <h4>D3 Vorlagen</h4>
+        <p>
+            Für die Visualisierung haben wir D3 Vorlagen benutzt. <br>
+            <a href="https://d3-graph-gallery.com/graph/choropleth_hover_effect.html">D3 Map</a><br />
+            <a href="https://d3-graph-gallery.com/graph/barplot_horizontal.html">D3 Bar Horizonztal</a><br />
+            <a href="https://d3-graph-gallery.com/graph/barplot_button_data_csv.html">D3 Bar Data csv</a> <br>
+            <a href="https://d3-graph-gallery.com/graph/interactivity_brush.html">D3 Scatterplot</a><br>
         </p>
-       
+        </p>
+
     </div>
-   
+
     <div class="w3-content w3-container" id="team">
         <div class="w3-center">
             <h3 class="w3-center">Team</h3>
@@ -244,7 +319,7 @@
             </div>
         </div>
     </div>
-    
+
 
 </body>
 
