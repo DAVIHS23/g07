@@ -27,8 +27,8 @@ var projection = d3.geoNaturalEarth2()
 
 var data = d3.map();
 colorScale = d3.scaleThreshold()
-  .domain([50, 60, 70, 80, 90, 95, 100, 105])  
-  .range(d3.schemeBlues[8]); 
+  .domain([50, 60, 70, 80, 90, 95, 100, 105])
+  .range(d3.schemeBlues[8]);
 
 d3.queue()
   .defer(d3.json, "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
@@ -37,7 +37,7 @@ d3.queue()
 
 
 function ready(error, topo, IQLevelData) {
-  
+
   worldData = topo
   worldData.features = worldData.features.filter(function (d) {
     return d.properties.name !== "Antarctica";
@@ -60,61 +60,55 @@ function ready(error, topo, IQLevelData) {
     document.getElementById("countryname").innerText = countryname;
     updateScatterplot(countryname);
 
-
-    // Remove highlighting from the corresponding bar in the bar chart
     var bar = svgBar.select(".myRect[data-country='" + d.properties.name + "']");
-      if (bar) {
-          bar.transition().style("opacity", 0.5);
-      }
+    if (bar) {
+      bar.transition().style("opacity", 0.5);
+    }
 
-      data2.sort(function (a, b) {
-        // Compare based on the selected property
-        const diff = b[selectedChoose] - a[selectedChoose];
+    data2.sort(function (a, b) {
+      const diff = b[selectedChoose] - a[selectedChoose];
 
-        // If the selected property values are equal, compare based on the "country" property
-        return diff !== 0 ? diff : a.country.localeCompare(b.country);
-      });
-      
-      var top20Data2 = data2.slice(0, 20);
-      top20Data2.reverse();
-      var isNotInTop20 = top20Data2.findIndex((item) => item.country === d.properties.name) === -1;
-      var top = [...top20Data2];
+      return diff !== 0 ? diff : a.country.localeCompare(b.country);
+    });
 
-      if (isNotInTop20) {
-        // Replace the last country in the bar chart with the current country
-        top[0] = iqData;
+    var top20Data2 = data2.slice(0, 20);
+    top20Data2.reverse();
+    var isNotInTop20 = top20Data2.findIndex((item) => item.country === d.properties.name) === -1;
+    var top = [...top20Data2];
 
-        y.domain(top.map(function (d) { return d.country; }));
+    if (isNotInTop20) {
+      top[0] = iqData;
+
+      y.domain(top.map(function (d) { return d.country; }));
 
 
-        svgBar.select(".y-axis").transition().duration(1000).call(yAxis);
+      svgBar.select(".y-axis").transition().duration(1000).call(yAxis);
 
-        var u = svgBar.selectAll(".myRect").data(top);
-        // Update the existing bars
-        // svgBar.selectAll(".myRect")
-        //   .data(top20Data)
-        //   .transition()
-        //   .attr("y", function (d) {
-        //       return y(d.country);
-        //   })
-        //   .attr("width", function (d) {
-        //       return x(d.IQ);
-        //   });
+      var u = svgBar.selectAll(".myRect").data(top);
+      // Update the existing bars
+      // svgBar.selectAll(".myRect")
+      //   .data(top20Data)
+      //   .transition()
+      //   .attr("y", function (d) {
+      //       return y(d.country);
+      //   })
+      //   .attr("width", function (d) {
+      //       return x(d.IQ);
+      //   });
 
 
-        svgBar.selectAll(".myRect[data-country='" + top20Data2[0].country + "']")
-          .data(top)
-          .filter(function (d) {
-              // Filter the selection based on the condition (e.g., matching the selected country)
-              return top[0].country;
-          })
-          .transition()
-          .attr("y", function (d) {
-              return y(top[0].country);
-          })
-          .attr("width", function (d) {
-              return x(top[0][selectedChoose]);
-          });
+      svgBar.selectAll(".myRect[data-country='" + top20Data2[0].country + "']")
+        .data(top)
+        .filter(function (d) {
+          return top[0].country;
+        })
+        .transition()
+        .attr("y", function (d) {
+          return y(top[0].country);
+        })
+        .attr("width", function (d) {
+          return x(top[0][selectedChoose]);
+        });
 
     }
 
@@ -152,7 +146,7 @@ function ready(error, topo, IQLevelData) {
         .style("left", (d3.event.pageX + 10) + "px")
         .style("top", (d3.event.pageY - 30) + "px")
         .style("opacity", 1);
-    }  else {
+    } else {
       var tooltipContent = `
         <strong>${d.properties.name}</strong><br>
         IQ Rank: undefined<br>
@@ -162,14 +156,14 @@ function ready(error, topo, IQLevelData) {
       tooltip.html(tooltipContent)
         .style("left", (d3.event.pageX + 10) + "px")
         .style("top", (d3.event.pageY - 30) + "px")
-        .style("opacity", 1); 
+        .style("opacity", 1);
     }
   };
 
   let mouseLeave = function (d) {
     var bar = svgBar.select(".myRect[data-country='" + d.properties.name + "']");
     if (bar) {
-        bar.transition().style("opacity", 1);
+      bar.transition().style("opacity", 1);
     }
     d3.selectAll(".Country")
       .transition()
@@ -182,17 +176,15 @@ function ready(error, topo, IQLevelData) {
       .style("stroke", "transparent");
 
     tooltip.style("opacity", 0);
-    
+
   };
 
   legendSvg = d3.select("#iq_map_legend")
-      .attr("width", 100)
-      .attr("height", height);
+    .attr("width", 100)
+    .attr("height", height);
 
-  // Define legend colors
   legendColors = colorScale.range();
 
-  // Append rectangles and text for legend items
   legendSvg.selectAll("rect")
     .data(legendColors)
     .enter()
@@ -237,8 +229,7 @@ var tooltip = d3.select("body").append("div")
   .attr("class", "tooltip")
   .style("opacity", 0);
 
-  
 
 
 
-  
+

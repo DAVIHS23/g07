@@ -1,28 +1,24 @@
-// Combine datasets based on common country names
-var combinedData = dataIQ_M.map(function(dIQ) {
-    var matchingData = dataMalNutrition.find(function(dMalNutrition) {
-      return dIQ.country.toUpperCase() === dMalNutrition.Country.toUpperCase();
+var combinedData = dataIQ_M.map(function (dIQ) {
+    var matchingData = dataMalNutrition.find(function (dMalNutrition) {
+        return dIQ.country.toUpperCase() === dMalNutrition.Country.toUpperCase();
     });
 
     if (matchingData) {
-      return {
-        country: dIQ.country,
-        IQ: dIQ.IQ,
-        Underweight: matchingData.Underweight
-      };
+        return {
+            country: dIQ.country,
+            IQ: dIQ.IQ,
+            Underweight: matchingData.Underweight
+        };
     } else {
-      return null; 
+        return null;
     }
 }).filter(Boolean);
 
 
+var margin = { top: 10, right: 30, bottom: 30, left: 60 };
+width = 700 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
- // Set up the chart dimensions
- var margin = { top: 10, right: 30, bottom: 30, left: 60 };
- width = 700 - margin.left - margin.right,
- height = 400 - margin.top - margin.bottom;
-
-// Create SVG container
 var svgScatterplotMal = d3.select("#dataviz_iqandunderweight")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -30,20 +26,16 @@ var svgScatterplotMal = d3.select("#dataviz_iqandunderweight")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// Set up the scales
 var xScaleMal = d3.scaleLinear().domain([50, 110]).range([0, width]);
 var yScaleMal = d3.scaleLinear().domain([0, 45]).range([height, 0]);
 
-// Add x-axis
 var XxAxisMal = svgScatterplotMal.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(xScaleMal));
 
-// Add Y axis
 svgScatterplotMal.append("g")
     .call(d3.axisLeft(yScaleMal));
 
-// Add axis labels
 svgScatterplotMal.append("text")
     .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
     .style("text-anchor", "middle")
@@ -65,7 +57,6 @@ var clip = svgScatterplotMal.append("defs").append("svg:clipPath")
     .attr("x", 0)
     .attr("y", 0);
 
-// Add brushing
 var brushMal = d3.brushX()
     .extent([[0, 0], [width, height]])
     .on("end", updateChartMal);
@@ -86,28 +77,26 @@ scatterMal
     .enter()
     .append("circle")
     .transition()
-    .delay(function(d,i){return(i*3)})
+    .delay(function (d, i) { return (i * 3) })
     .duration(2000)
     .attr("cx", function (d) { return xScaleMal(d.IQ); })
     .attr("cy", function (d) { return yScaleMal(d.Underweight); })
     .attr("r", 5)
     .style("fill", "blue")
-    // .style("fill", function (d) { return color(d.Species) } )
     .style("opacity", 0.5);
 
-// Add country names above the circles
 scatterMal
     .selectAll("text.country-label")
     .data(combinedData)
     .enter()
     .append("text")
     .attr("class", "country-label")
-    .text(function(d) { return d.country; })
+    .text(function (d) { return d.country; })
     .transition()
-    .delay(function(d,i){return(i*3)})
+    .delay(function (d, i) { return (i * 3) })
     .duration(2000)
-    .attr("x", function(d) { return xScaleMal(d.IQ); })
-    .attr("y", function(d) { return yScaleMal(d.Underweight) - 12; }) 
+    .attr("x", function (d) { return xScaleMal(d.IQ); })
+    .attr("y", function (d) { return yScaleMal(d.Underweight) - 12; })
     .attr("text-anchor", "middle")
     .style("font-size", "10px")
     .style("fill", "black");
@@ -141,9 +130,8 @@ function updateChartMal() {
         .attr("cx", function (d) { return xScaleMal(d.IQ); })
         .attr("cy", function (d) { return yScaleMal(d.Underweight); });
 
-    // Update country names during zoom
     scatterMal
         .selectAll("text.country-label")
-        .attr("x", function(d) { return xScaleMal(d.IQ); })
-        .attr("y", function(d) { return yScaleMal(d.Underweight) - 12; });
+        .attr("x", function (d) { return xScaleMal(d.IQ); })
+        .attr("y", function (d) { return yScaleMal(d.Underweight) - 12; });
 }
